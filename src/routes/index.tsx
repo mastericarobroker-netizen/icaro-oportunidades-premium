@@ -25,8 +25,8 @@ import {
   ArrowRight,
   Check,
 } from "lucide-react";
-import corpoAsset from "@/assets/icaro-corpo.asset.json";
-import heroAsset from "@/assets/icaro-hero.jpeg.asset.json";
+import corpoImage from "@/assets/Ícaro_Corpo_inteiro2.jpeg";
+import heroImage from "@/assets/Ícaro_Foto_Perfil.jpeg";
 import { useServerFn } from "@tanstack/react-start";
 import { listFeaturedProperties } from "@/lib/properties.functions";
 import { OFFER_LABEL, formatBRL, type Property } from "@/lib/properties.shared";
@@ -249,7 +249,7 @@ function Hero() {
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <img
-              src={heroAsset.url}
+              src={heroImage}
               alt="Ícaro — Especialista em Investimentos Imobiliários"
               width={1600}
               height={1200}
@@ -284,7 +284,7 @@ function Authority() {
         <motion.div {...fadeUp} className="relative">
           <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
             <img
-              src={corpoAsset.url}
+              src={corpoImage}
               alt="Ícaro — Especialista em Investimentos Imobiliários"
               loading="lazy"
               className="h-full w-full object-cover grayscale-[15%]"
