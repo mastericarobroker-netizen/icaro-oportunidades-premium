@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { supabase } from "@/integrations/supabase/client";
 
 const offerEnum = z.enum([
   "primeiro_leilao",
@@ -25,18 +26,27 @@ const propertyInput = z.object({
 
 // Public — featured / latest active properties for the landing page
 export const listFeaturedProperties = createServerFn({ method: "GET" }).handler(async () => {
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data, error } = await supabaseAdmin
-    .from("properties")
-    .select(
-      "id,title,address,city,description,image_url,offer_type,appraisal_value,price,active,featured,created_at,updated_at",
-    )
-    .eq("active", true)
-    .order("featured", { ascending: false })
-    .order("created_at", { ascending: false })
-    .limit(3);
-  if (error) throw new Error(error.message);
-  return { properties: data ?? [] };
+  try {
+    const { data, error } = await supabase
+      .from("properties")
+      .select(
+        "id,title,address,city,description,image_url,offer_type,appraisal_value,price,active,featured,created_at,updated_at",
+      )
+      .eq("active", true)
+      .order("featured", { ascending: false })
+      .order("created_at", { ascending: false })
+      .limit(3);
+
+    if (error) {
+      console.error(`[Supabase] Failed to load featured properties: ${error.message}`);
+      return { properties: [] };
+    }
+
+    return { properties: data ?? [] };
+  } catch (error) {
+    console.error("[Supabase] Unexpected error loading featured properties:", error);
+    return { properties: [] };
+  }
 });
 
 async function ensureAdmin(context: { supabase: any; userId: string }) {

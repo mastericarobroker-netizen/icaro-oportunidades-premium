@@ -10,12 +10,34 @@ function createSupabaseClient() {
 
   if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
     const missing = [
-      ...(!SUPABASE_URL ? ['SUPABASE_URL'] : []),
-      ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
+      ...(!SUPABASE_URL ? ['VITE_SUPABASE_URL / SUPABASE_URL'] : []),
+      ...(!SUPABASE_PUBLISHABLE_KEY ? ['VITE_SUPABASE_PUBLISHABLE_KEY / SUPABASE_PUBLISHABLE_KEY'] : []),
     ];
-    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
+    const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Set them in Vercel project settings.`;
     console.error(`[Supabase] ${message}`);
-    throw new Error(message);
+
+    const fallback: any = {
+      auth: {
+        getSession: async () => ({ data: { session: null }, error: null }),
+        signInWithPassword: async () => ({ data: null, error: new Error(message) }),
+        signUp: async () => ({ data: null, error: new Error(message) }),
+        getUser: async () => ({ data: { user: null }, error: null }),
+      },
+      from: () => ({
+        select: async () => ({ data: null, error: new Error(message) }),
+        eq: () => ({
+          select: async () => ({ data: null, error: new Error(message) }),
+        }),
+        order: () => ({
+          select: async () => ({ data: null, error: new Error(message) }),
+        }),
+        limit: () => ({
+          select: async () => ({ data: null, error: new Error(message) }),
+        }),
+      }),
+    };
+
+    return fallback as ReturnType<typeof createSupabaseClient>;
   }
 
   return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {

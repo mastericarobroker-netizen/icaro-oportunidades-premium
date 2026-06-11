@@ -1,5 +1,6 @@
-import { T as TSS_SERVER_FUNCTION, a as createServerFn } from "./server-LIwUN2EI.mjs";
-import { r as requireSupabaseAuth } from "./auth-middleware-BKrlstJM.mjs";
+import { T as TSS_SERVER_FUNCTION, a as createServerFn } from "./server-B0rHUgFE.mjs";
+import { r as requireSupabaseAuth } from "./auth-middleware-DuySSNHz.mjs";
+import { s as supabase } from "./client-YydkYU_u.mjs";
 import "../_libs/seroval.mjs";
 import "../_libs/react.mjs";
 import { _ as _enum, o as object, b as boolean, n as number, s as string, l as literal } from "../_libs/zod.mjs";
@@ -58,21 +59,30 @@ const listFeaturedProperties_createServerFn_handler = createServerRpc({
 const listFeaturedProperties = createServerFn({
   method: "GET"
 }).handler(listFeaturedProperties_createServerFn_handler, async () => {
-  const {
-    supabaseAdmin
-  } = await import("./client.server-D5ro3rAQ.mjs");
-  const {
-    data,
-    error
-  } = await supabaseAdmin.from("properties").select("id,title,address,city,description,image_url,offer_type,appraisal_value,price,active,featured,created_at,updated_at").eq("active", true).order("featured", {
-    ascending: false
-  }).order("created_at", {
-    ascending: false
-  }).limit(3);
-  if (error) throw new Error(error.message);
-  return {
-    properties: data ?? []
-  };
+  try {
+    const {
+      data,
+      error
+    } = await supabase.from("properties").select("id,title,address,city,description,image_url,offer_type,appraisal_value,price,active,featured,created_at,updated_at").eq("active", true).order("featured", {
+      ascending: false
+    }).order("created_at", {
+      ascending: false
+    }).limit(3);
+    if (error) {
+      console.error(`[Supabase] Failed to load featured properties: ${error.message}`);
+      return {
+        properties: []
+      };
+    }
+    return {
+      properties: data ?? []
+    };
+  } catch (error) {
+    console.error("[Supabase] Unexpected error loading featured properties:", error);
+    return {
+      properties: []
+    };
+  }
 });
 async function ensureAdmin(context) {
   const {

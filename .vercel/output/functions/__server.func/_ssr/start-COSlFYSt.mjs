@@ -1,4 +1,4 @@
-import { c as createMiddleware } from "./server-LIwUN2EI.mjs";
+import { c as createMiddleware } from "./server-B0rHUgFE.mjs";
 import { r as renderErrorPage } from "./index.mjs";
 import { s as supabase } from "./client-YydkYU_u.mjs";
 import "../_libs/seroval.mjs";
@@ -54,11 +54,16 @@ var createStart = (getOptions) => {
 };
 const attachSupabaseAuth = createMiddleware({ type: "function" }).client(
   async ({ next }) => {
-    const { data } = await supabase.auth.getSession();
-    const token = data.session?.access_token;
-    return next({
-      headers: token ? { Authorization: `Bearer ${token}` } : {}
-    });
+    try {
+      const { data } = await supabase.auth.getSession();
+      const token = data.session?.access_token;
+      return next({
+        headers: token ? { Authorization: `Bearer ${token}` } : {}
+      });
+    } catch (error) {
+      console.error("[Supabase] Failed to attach auth header:", error);
+      return next({ headers: {} });
+    }
   }
 );
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
