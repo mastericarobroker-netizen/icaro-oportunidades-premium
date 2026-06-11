@@ -25,9 +25,11 @@ import {
   ArrowRight,
   Check,
 } from "lucide-react";
-import heroImg from "@/assets/hero-skyline.jpg";
-import perfilAsset from "@/assets/icaro-perfil.asset.json";
 import corpoAsset from "@/assets/icaro-corpo.asset.json";
+import heroAsset from "@/assets/icaro-hero.jpeg.asset.json";
+import { useServerFn } from "@tanstack/react-start";
+import { listFeaturedProperties } from "@/lib/properties.functions";
+import { OFFER_LABEL, formatBRL, type Property } from "@/lib/properties.shared";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -59,6 +61,7 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 const nav = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre", href: "#sobre" },
+  { label: "Imóveis", href: "#imoveis" },
   { label: "Oportunidades", href: "#oportunidades" },
   { label: "Benefícios", href: "#beneficios" },
   { label: "Contato", href: "#contato" },
@@ -85,6 +88,7 @@ function Index() {
       <main>
         <Hero />
         <Authority />
+        <Properties />
         <Benefits />
         <Opportunities />
         <Region />
@@ -245,11 +249,11 @@ function Hero() {
         >
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <img
-              src={heroImg}
-              alt="Skyline de São José dos Campos"
+              src={heroAsset.url}
+              alt="Ícaro — Especialista em Investimentos Imobiliários"
               width={1600}
               height={1200}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover object-top"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
           </div>
@@ -284,14 +288,6 @@ function Authority() {
               alt="Ícaro — Especialista em Investimentos Imobiliários"
               loading="lazy"
               className="h-full w-full object-cover grayscale-[15%]"
-            />
-          </div>
-          <div className="absolute -bottom-8 -right-4 hidden h-32 w-32 overflow-hidden border-4 border-background bg-background shadow-xl sm:block lg:-right-8 lg:h-44 lg:w-44">
-            <img
-              src={perfilAsset.url}
-              alt="Ícaro"
-              loading="lazy"
-              className="h-full w-full object-cover"
             />
           </div>
         </motion.div>
