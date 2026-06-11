@@ -16,6 +16,30 @@ function createSupabaseClient() {
     const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Set them in Vercel project settings.`;
     console.error(`[Supabase] ${message}`);
 
+    const queryFallback = {
+      select() {
+        return this;
+      },
+      eq() {
+        return this;
+      },
+      order() {
+        return this;
+      },
+      limit() {
+        return this;
+      },
+      single() {
+        return this;
+      },
+      then(resolve: (value: any) => any) {
+        return resolve({ data: null, error: new Error(message) });
+      },
+      catch() {
+        return this;
+      },
+    };
+
     const fallback: any = {
       auth: {
         getSession: async () => ({ data: { session: null }, error: null }),
@@ -23,18 +47,7 @@ function createSupabaseClient() {
         signUp: async () => ({ data: null, error: new Error(message) }),
         getUser: async () => ({ data: { user: null }, error: null }),
       },
-      from: () => ({
-        select: async () => ({ data: null, error: new Error(message) }),
-        eq: () => ({
-          select: async () => ({ data: null, error: new Error(message) }),
-        }),
-        order: () => ({
-          select: async () => ({ data: null, error: new Error(message) }),
-        }),
-        limit: () => ({
-          select: async () => ({ data: null, error: new Error(message) }),
-        }),
-      }),
+      from: () => queryFallback,
     };
 
     return fallback as ReturnType<typeof createSupabaseClient>;
