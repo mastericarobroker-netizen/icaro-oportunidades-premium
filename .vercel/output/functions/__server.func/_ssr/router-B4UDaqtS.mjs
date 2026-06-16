@@ -3,7 +3,7 @@ import { Q as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
 import { c as createRouter, a as createRootRouteWithContext, u as useRouter, L as Link, O as Outlet, H as HeadContent, S as Scripts, b as createFileRoute, l as lazyRouteComponent } from "../_libs/tanstack__react-router.mjs";
 import { S as redirect } from "../_libs/tanstack__router-core.mjs";
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
-import { s as supabase } from "./client-YydkYU_u.mjs";
+import { s as supabase } from "./client-COBh9qXr.mjs";
 import { o as object, s as string } from "../_libs/zod.mjs";
 import "../_libs/react-dom.mjs";
 import "util";
@@ -17,15 +17,6 @@ import "../_libs/cookie-es.mjs";
 import "../_libs/seroval.mjs";
 import "../_libs/seroval-plugins.mjs";
 import "node:stream/web";
-import "../_libs/supabase__supabase-js.mjs";
-import "../_libs/supabase__postgrest-js.mjs";
-import "../_libs/supabase__realtime-js.mjs";
-import "../_libs/supabase__phoenix.mjs";
-import "../_libs/supabase__storage-js.mjs";
-import "../_libs/iceberg-js.mjs";
-import "../_libs/supabase__auth-js.mjs";
-import "tslib";
-import "../_libs/supabase__functions-js.mjs";
 const appCss = "/assets/styles-ByWLb98I.css";
 function reportLovableError(error, context = {}) {
   if (typeof window === "undefined") return;
@@ -135,7 +126,7 @@ function RootComponent() {
   const { queryClient } = Route$4.useRouteContext();
   return /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) });
 }
-const $$splitComponentImporter$3 = () => import("./auth-CxY2dn-A.mjs");
+const $$splitComponentImporter$3 = () => import("./auth-DQ4htkWD.mjs");
 const Route$3 = createFileRoute("/auth")({
   head: () => ({
     meta: [{
@@ -161,7 +152,7 @@ const Route$2 = createFileRoute("/_authenticated")({
   },
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./index-oMULnHT1.mjs");
+const $$splitComponentImporter$1 = () => import("./index-CeD5CMAk.mjs");
 const Route$1 = createFileRoute("/")({
   head: () => ({
     meta: [{
@@ -187,7 +178,7 @@ object({
   telefone: string().trim().min(8, "Telefone inválido").max(20),
   email: string().trim().email("E-mail inválido").max(120)
 });
-const $$splitComponentImporter = () => import("./dashboard-YFm9CJ1E.mjs");
+const $$splitComponentImporter = () => import("./dashboard-SUWAtPWF.mjs");
 const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [{

@@ -1,6 +1,6 @@
-import { T as TSS_SERVER_FUNCTION, a as createServerFn } from "./server-kS519hlt.mjs";
-import { r as requireSupabaseAuth } from "./auth-middleware-BY2Ftwuo.mjs";
-import { s as supabase } from "./client-YydkYU_u.mjs";
+import { T as TSS_SERVER_FUNCTION, a as createServerFn } from "./server-CCzWw-QQ.mjs";
+import { r as requireSupabaseAuth } from "./auth-middleware-DWM_ucBr.mjs";
+import { s as supabase } from "./client-COBh9qXr.mjs";
 import "../_libs/seroval.mjs";
 import "../_libs/react.mjs";
 import { _ as _enum, o as object, b as boolean, n as number, s as string, l as literal } from "../_libs/zod.mjs";
@@ -108,7 +108,7 @@ const listAllProperties = createServerFn({
   await ensureAdmin(context);
   const {
     supabaseAdmin
-  } = await import("./client.server-D5ro3rAQ.mjs");
+  } = await import("./client.server-D8SVvIIi.mjs");
   const {
     data,
     error
@@ -134,7 +134,7 @@ const createProperty = createServerFn({
   await ensureAdmin(context);
   const {
     supabaseAdmin
-  } = await import("./client.server-D5ro3rAQ.mjs");
+  } = await import("./client.server-D8SVvIIi.mjs");
   const {
     data: row,
     error
@@ -172,7 +172,7 @@ const updateProperty = createServerFn({
   await ensureAdmin(context);
   const {
     supabaseAdmin
-  } = await import("./client.server-D5ro3rAQ.mjs");
+  } = await import("./client.server-D8SVvIIi.mjs");
   const {
     id,
     ...patch
@@ -209,7 +209,7 @@ const deleteProperty = createServerFn({
   await ensureAdmin(context);
   const {
     supabaseAdmin
-  } = await import("./client.server-D5ro3rAQ.mjs");
+  } = await import("./client.server-D8SVvIIi.mjs");
   const {
     error
   } = await supabaseAdmin.from("properties").delete().eq("id", data.id);

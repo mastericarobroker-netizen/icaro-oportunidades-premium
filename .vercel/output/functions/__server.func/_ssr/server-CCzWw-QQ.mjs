@@ -84,7 +84,7 @@ function getResponse() {
 }
 var HEADERS = { TSS_SHELL: "X-TSS_SHELL" };
 async function getStartManifest(matchedRoutes) {
-  const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-BRbjQoip.mjs");
+  const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-D9bxTl0_.mjs");
   const startManifest = tsrStartManifest();
   let routes = startManifest.routes;
   routes[rootRouteId];
@@ -106,27 +106,27 @@ async function getStartManifest(matchedRoutes) {
 const manifest = {
   "43a8a8954d4316cf6f20a05d8d6344510e824f94e53a66565d59cc4f5a9313b3": {
     functionName: "checkIsAdmin_createServerFn_handler",
-    importer: () => import("./properties.functions-BxGFWJ2R.mjs")
+    importer: () => import("./properties.functions-vRD8vNK7.mjs")
   },
   "619526cbde28e94a562fc50dceb0e32525822dc6afcee34179675bfe73a44eb5": {
     functionName: "createProperty_createServerFn_handler",
-    importer: () => import("./properties.functions-BxGFWJ2R.mjs")
+    importer: () => import("./properties.functions-vRD8vNK7.mjs")
   },
   "9df3dd3cbd2f1730624b2df425a61ed753eaa0ab538af16f0f692e1fce63fcd3": {
     functionName: "updateProperty_createServerFn_handler",
-    importer: () => import("./properties.functions-BxGFWJ2R.mjs")
+    importer: () => import("./properties.functions-vRD8vNK7.mjs")
   },
   "addd376039e3a24ebf829cce249140afd5a8c0d8a344f48bf44db3fbf3379cee": {
     functionName: "listFeaturedProperties_createServerFn_handler",
-    importer: () => import("./properties.functions-BxGFWJ2R.mjs")
+    importer: () => import("./properties.functions-vRD8vNK7.mjs")
   },
   "c99808efb321bc30567e74ff512f26d3b4722dbb401173cb2130f52a674941ce": {
     functionName: "deleteProperty_createServerFn_handler",
-    importer: () => import("./properties.functions-BxGFWJ2R.mjs")
+    importer: () => import("./properties.functions-vRD8vNK7.mjs")
   },
   "cad61ffb3d9079dcbfd0e18f0c282eb196dacf445495b00a645ace68243a63aa": {
     functionName: "listAllProperties_createServerFn_handler",
-    importer: () => import("./properties.functions-BxGFWJ2R.mjs")
+    importer: () => import("./properties.functions-vRD8vNK7.mjs")
   }
 };
 async function getServerFnById(id, access) {
@@ -1366,8 +1366,8 @@ var getBaseManifest = getProdBaseManifest;
 var createEarlyHintsForRequest = createEarlyHintsCollector;
 async function loadEntries() {
   const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-    import("./router-DudP56KU.mjs"),
-    import("./start-DO43MRND.mjs"),
+    import("./router-B4UDaqtS.mjs"),
+    import("./start-Dcx4Mnkp.mjs"),
     import("./empty-plugin-adapters-BFgPZ6_d.mjs")
   ]);
   return {
