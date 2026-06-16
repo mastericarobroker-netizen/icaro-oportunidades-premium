@@ -25,8 +25,9 @@ import {
   ArrowRight,
   Check,
 } from "lucide-react";
-import corpoImage from "@/assets/Ícaro_Corpo_inteiro2.jpeg";
-import heroImage from "@/assets/Ícaro_Foto_Perfil.jpeg";
+import corpoImage from "@/assets/Ícaro_Corpo_inteiro2.jpg";
+import heroImage from "@/assets/Ícaro_Foto_Perfil.jpg";
+import regionMap from "@/assets/mapa-vale-do-paraiba.png";
 import { useServerFn } from "@tanstack/react-start";
 import { listFeaturedProperties } from "@/lib/properties.functions";
 import { OFFER_LABEL, formatBRL, type Property } from "@/lib/properties.shared";
@@ -65,6 +66,15 @@ const nav = [
   { label: "Oportunidades", href: "#oportunidades" },
   { label: "Benefícios", href: "#beneficios" },
   { label: "Contato", href: "#contato" },
+];
+
+const categories = [
+  "Licitações",
+  "Análise de investimento",
+  "Abaixo do valor de mercado",
+  "Imóveis Caixa",
+  "Leilões Judiciais",
+  "Venda direta",
 ];
 
 const fadeUp = {
@@ -112,74 +122,71 @@ function Header() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-border/60 bg-background/85 backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-        <a href="#inicio" className="group flex items-baseline gap-2">
-          <span className="font-display text-2xl tracking-tight">Ícaro</span>
-          <span className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
-            Imóveis
+    <header className="sticky top-0 z-50">
+      <div className="border-b border-border bg-foreground text-background text-[10px] uppercase tracking-[0.28em]">
+        <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-6 lg:px-10">
+          <span>Curadoria de oportunidades Caixa e leilões · Vale do Paraíba</span>
+          <span className="hidden items-center gap-2 text-background/80 sm:flex">
+            Resposta em até 24h
           </span>
-        </a>
-        <nav className="hidden items-center gap-9 lg:flex">
-          {nav.map((n) => (
-            <a
-              key={n.href}
-              href={n.href}
-              className="text-sm text-graphite transition-colors hover:text-foreground"
-            >
-              {n.label}
-            </a>
-          ))}
-        </nav>
-        <div className="hidden lg:block">
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="group inline-flex items-center gap-2 border border-foreground bg-foreground px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-background transition-all hover:bg-transparent hover:text-foreground"
-          >
-            Falar com Especialista
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </a>
         </div>
-        <button
-          aria-label="Abrir menu"
-          className="lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
       </div>
-      {open && (
-        <div className="border-t border-border bg-background lg:hidden">
-          <nav className="flex flex-col gap-1 px-6 py-4">
+      <div className={`border-b border-border bg-background/95 transition-all duration-500 ${scrolled ? "backdrop-blur-xl shadow-sm" : ""}`}>
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
+          <a href="#inicio" className="group flex items-baseline gap-3">
+            <span className="font-display text-3xl tracking-tight text-foreground">Ícaro</span>
+            <span className="text-[10px] uppercase tracking-[0.32em] text-muted-foreground">Imóveis</span>
+          </a>
+          <nav className="hidden items-center gap-8 lg:flex">
             {nav.map((n) => (
               <a
                 key={n.href}
                 href={n.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-border py-3 text-sm text-graphite"
+                className="text-sm uppercase tracking-[0.18em] text-graphite transition-colors hover:text-foreground"
               >
                 {n.label}
               </a>
             ))}
+          </nav>
+          <div className="hidden lg:block">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-3 inline-flex items-center justify-center gap-2 bg-foreground px-5 py-3 text-xs uppercase tracking-[0.18em] text-background"
+              className="inline-flex items-center justify-center gap-2 rounded-sm bg-foreground px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-background transition hover:bg-graphite"
             >
               Falar com Especialista
             </a>
-          </nav>
+          </div>
+          <button aria-label="Abrir menu" className="lg:hidden" onClick={() => setOpen((v) => !v)}>
+            {open ? <X className="h-5 w-5 text-foreground" /> : <Menu className="h-5 w-5 text-foreground" />}
+          </button>
         </div>
-      )}
+        {open && (
+          <div className="border-t border-border bg-background lg:hidden">
+            <nav className="flex flex-col gap-1 px-6 py-4">
+              {nav.map((n) => (
+                <a
+                  key={n.href}
+                  href={n.href}
+                  onClick={() => setOpen(false)}
+                  className="border-b border-border py-3 text-sm text-graphite"
+                >
+                  {n.label}
+                </a>
+              ))}
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-sm bg-foreground px-5 py-3 text-xs uppercase tracking-[0.18em] text-background"
+              >
+                Falar com Especialista
+              </a>
+            </nav>
+          </div>
+        )}
+      </div>
     </header>
   );
 }
@@ -195,77 +202,76 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function Hero() {
   return (
-    <section id="inicio" className="relative isolate overflow-hidden pt-32 lg:pt-40">
-      <div className="mx-auto grid max-w-7xl gap-16 px-6 pb-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-10 lg:pb-32">
-        <motion.div {...fadeUp} className="flex flex-col justify-center">
-          <Eyebrow>Investimentos imobiliários · Vale do Paraíba</Eyebrow>
-          <h1 className="mt-7 text-balance text-5xl leading-[1.03] tracking-tight lg:text-[4.25rem]">
-            Invista em imóveis com{" "}
-            <span className="italic text-graphite">inteligência</span>
-            <br />e <span className="italic text-graphite">segurança</span>.
-          </h1>
-          <p className="mt-7 max-w-xl text-base leading-relaxed text-muted-foreground lg:text-lg">
-            Especialista em imóveis Caixa, oportunidades abaixo do valor de
-            mercado e investimentos imobiliários no Vale do Paraíba.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href="#contato"
-              className="group inline-flex items-center gap-2 bg-foreground px-7 py-4 text-xs uppercase tracking-[0.2em] text-background transition-transform hover:-translate-y-0.5"
-            >
-              Quero receber oportunidades
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 border border-foreground/80 px-7 py-4 text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:bg-foreground hover:text-background"
-            >
-              <MessageCircle className="h-4 w-4" /> Falar no WhatsApp
-            </a>
-          </div>
-          <dl className="mt-14 grid grid-cols-3 gap-6 border-t border-border pt-8 text-left">
-            {[
-              ["+10", "Cidades atendidas"],
-              ["100%", "Análise consultiva"],
-              ["24h", "Resposta ágil"],
-            ].map(([k, v]) => (
-              <div key={v}>
-                <dt className="font-display text-3xl text-foreground">{k}</dt>
-                <dd className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  {v}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative"
-        >
-          <div className="relative aspect-[4/5] w-full overflow-hidden">
-            <img
-              src={heroImage}
-              alt="Ícaro — Especialista em Investimentos Imobiliários"
-              width={1600}
-              height={1200}
-              className="h-full w-full object-cover object-top"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" />
-          </div>
-          <div className="absolute -bottom-6 -left-6 hidden w-64 bg-background p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.25)] sm:block">
-            <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-gold">
-              <Sparkles className="h-3 w-3" /> Curadoria
+    <section id="inicio" className="relative overflow-hidden bg-background py-24 lg:py-28">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <motion.div {...fadeUp} className="max-w-2xl">
+            <div className="text-[11px] uppercase tracking-[0.36em] text-muted-foreground">
+              Investimentos imobiliários · Vale do Paraíba
             </div>
-            <p className="mt-3 font-display text-xl leading-snug">
-              Oportunidades antes do mercado.
+            <h1 className="mt-8 text-[3.8rem] leading-[0.94] tracking-[-0.04em] text-foreground sm:text-[4.5rem] lg:text-[5.5rem]">
+              Invista em imóveis com <span className="italic text-gold">inteligência</span>
+              <br />e <span className="italic text-gold">segurança</span>.
+            </h1>
+            <p className="mt-8 max-w-xl text-base leading-8 text-muted-foreground lg:text-lg">
+              Especialista em imóveis Caixa, oportunidades abaixo do valor de mercado e
+              investimentos imobiliários no Vale do Paraíba.
             </p>
-          </div>
-        </motion.div>
+            <div className="mt-12 flex flex-wrap gap-4">
+              <a
+                href="#contato"
+                className="inline-flex items-center justify-center gap-2 rounded-sm bg-foreground px-8 py-4 text-xs uppercase tracking-[0.2em] text-background transition hover:bg-graphite"
+              >
+                Quero receber oportunidades
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-sm border border-foreground px-8 py-4 text-xs uppercase tracking-[0.2em] text-foreground transition hover:bg-foreground hover:text-background"
+              >
+                <MessageCircle className="h-4 w-4" /> Falar no WhatsApp
+              </a>
+            </div>
+            <dl className="mt-16 grid max-w-xl grid-cols-3 gap-4 border-t border-border pt-8 text-left">
+              {[
+                ["+10", "Cidades atendidas"],
+                ["100%", "Análise consultiva"],
+                ["24h", "Resposta ágil"],
+              ].map(([k, v]) => (
+                <div key={v}>
+                  <dt className="font-display text-3xl text-foreground">{k}</dt>
+                  <dd className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                    {v}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+          >
+            <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-[0_40px_120px_-80px_rgba(16,16,16,0.16)]">
+              <img
+                src={heroImage}
+                alt="Ícaro — Especialista em Investimentos Imobiliários"
+                width={1600}
+                height={1200}
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+            <div className="absolute -top-6 right-4 hidden w-56 rounded border border-border bg-background/95 px-4 py-3 text-xs shadow-xl sm:block">
+              <div className="text-[9px] uppercase tracking-[0.32em] text-muted-foreground">
+                Especialista
+              </div>
+              <div className="mt-1 font-medium text-foreground">Imóveis Caixa</div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -279,46 +285,46 @@ function Authority() {
     "Atendimento personalizado",
   ];
   return (
-    <section id="sobre" className="border-t border-border bg-secondary/40 py-28 lg:py-36">
-      <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 lg:px-10">
-        <motion.div {...fadeUp} className="relative">
-          <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
-            <img
-              src={corpoImage}
-              alt="Ícaro — Especialista em Investimentos Imobiliários"
-              loading="lazy"
-              className="h-full w-full object-cover grayscale-[15%]"
-            />
-          </div>
+    <section id="sobre" className="border-t border-border bg-background py-28 lg:py-36">
+      <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-10">
+        <motion.div
+          {...fadeUp}
+          className="relative overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_40px_80px_-44px_rgba(16,16,16,0.16)]"
+        >
+          <img
+            src={corpoImage}
+            alt="Ícaro — Especialista em Investimentos Imobiliários"
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
         </motion.div>
 
-        <motion.div {...fadeUp} className="flex flex-col justify-center">
-          <Eyebrow>Sobre</Eyebrow>
+        <motion.div {...fadeUp} className="relative flex flex-col justify-center">
+          <div className="text-[11px] uppercase tracking-[0.32em] text-gold">Sobre</div>
           <h2 className="mt-6 text-4xl leading-tight lg:text-5xl">
-            Seu especialista em <span className="italic">investimentos</span>{" "}
-            imobiliários.
+            Seu especialista em <span className="italic text-gold">investimentos</span> imobiliários.
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground lg:text-lg">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground lg:text-lg">
             Atuo auxiliando investidores e compradores a encontrar imóveis com
             alto potencial de valorização, oportunidades Caixa e imóveis de
             leilão — com foco em geração de patrimônio e rentabilidade.
           </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            {indicators.map((i) => (
-              <div
-                key={i}
-                className="group flex items-center gap-3 border border-border bg-background px-5 py-5 transition-colors hover:border-gold"
-              >
-                <span className="grid h-8 w-8 shrink-0 place-items-center border border-gold/40 text-gold">
-                  <Check className="h-3.5 w-3.5" />
-                </span>
-                <span className="text-sm tracking-wide">{i}</span>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2">
+            {indicators.map((item) => (
+              <div key={item} className="rounded-[0.75rem] border border-border bg-white p-5 shadow-sm">
+                <div className="flex items-start gap-3 text-sm text-foreground">
+                  <span className="mt-1 h-4 w-4 rounded border border-gold bg-gold/10" />
+                  <span>{item}</span>
+                </div>
               </div>
             ))}
           </div>
-          <p className="mt-8 font-display text-lg italic text-graphite">
+          <p className="mt-10 max-w-xl text-sm italic text-graphite">
             “Patrimônio se constrói com critério, dados e oportunidades certas.”
           </p>
+          <span className="pointer-events-none absolute right-0 top-0 text-[9rem] font-display font-light text-foreground/5">
+            01
+          </span>
         </motion.div>
       </div>
     </section>
@@ -444,36 +450,38 @@ function Properties() {
 
 function BenefitsImpl() {
   const items = [
-    { icon: Sparkles, title: "Curadoria Especializada", text: "Seleção das melhores oportunidades." },
-    { icon: LineChart, title: "Análise de Potencial", text: "Avaliação de valorização e retorno." },
-    { icon: ShieldCheck, title: "Segurança Jurídica", text: "Acompanhamento completo do processo." },
-    { icon: Handshake, title: "Atendimento Consultivo", text: "Suporte do início ao fim." },
+    { title: "Curadoria Especializada", text: "Seleção das melhores oportunidades." },
+    { title: "Análise de Potencial", text: "Avaliação de valorização e retorno." },
+    { title: "Segurança Jurídica", text: "Acompanhamento completo do processo." },
+    { title: "Atendimento Consultivo", text: "Suporte do início ao fim." },
   ];
   return (
-    <section id="beneficios" className="py-28 lg:py-36">
+    <section id="beneficios" className="border-t border-border bg-background py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <motion.div {...fadeUp} className="max-w-2xl">
-          <Eyebrow>Benefícios</Eyebrow>
+          <div className="text-[11px] uppercase tracking-[0.32em] text-gold">Benefícios</div>
           <h2 className="mt-6 text-4xl leading-tight lg:text-5xl">
             Por que investir com a Ícaro Imóveis?
           </h2>
         </motion.div>
-        <div className="mt-16 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2 lg:grid-cols-4">
-          {items.map((it, idx) => (
+        <div className="mt-16 overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_30px_80px_-44px_rgba(16,16,16,0.12)]">
+          {items.map((item, idx) => (
             <motion.div
-              key={it.title}
+              key={item.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.08 }}
-              className="group relative bg-background p-10 transition-colors hover:bg-secondary/60"
+              className={`grid gap-4 px-8 py-7 ${idx < items.length - 1 ? "border-b border-border" : ""}`}
             >
-              <it.icon className="h-7 w-7 text-gold" strokeWidth={1.4} />
-              <h3 className="mt-8 text-xl">{it.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {it.text}
-              </p>
-              <span className="absolute bottom-0 left-0 h-px w-0 bg-gold transition-all duration-500 group-hover:w-full" />
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <span className="font-display text-2xl text-gold">0{idx + 1}</span>
+                  <h3 className="text-xl text-foreground">{item.title}</h3>
+                </div>
+                <span className="text-sm uppercase tracking-[0.18em] text-muted-foreground">0{idx + 1}</span>
+              </div>
+              <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
             </motion.div>
           ))}
         </div>
@@ -490,15 +498,17 @@ function Opportunities() {
     { icon: Repeat, title: "Imóveis para Revenda", text: "Oportunidades de curto prazo com margem de valorização." },
   ];
   return (
-    <section id="oportunidades" className="relative bg-foreground py-28 text-background lg:py-36">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="oportunidades" className="relative overflow-hidden bg-foreground py-28 text-background lg:py-36">
+      <div className="absolute inset-0 opacity-10">
+        <div className="h-full w-full bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_32%)]" />
+      </div>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <motion.div {...fadeUp} className="max-w-2xl">
           <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-gold-soft">
             <span className="h-px w-8 bg-gold" /> Oportunidades
           </div>
           <h2 className="mt-6 text-4xl leading-tight lg:text-5xl">
-            Oportunidades que podem{" "}
-            <span className="italic text-gold-soft">gerar patrimônio</span>.
+            Oportunidades que podem <span className="italic text-gold">gerar patrimônio</span>.
           </h2>
         </motion.div>
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -509,19 +519,14 @@ function Opportunities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.08 }}
-              className="group relative overflow-hidden border border-background/15 bg-background/[0.03] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:bg-background/[0.06]"
+              className="group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/5 p-8 text-background transition-all duration-500 hover:-translate-y-1 hover:border-gold/40 hover:bg-white/10"
             >
               <div className="flex items-center justify-between">
                 <it.icon className="h-7 w-7 text-gold-soft" strokeWidth={1.4} />
-                <span className="font-display text-sm text-background/40">
-                  0{idx + 1}
-                </span>
+                <span className="font-display text-sm text-gold/60">0{idx + 1}</span>
               </div>
-              <h3 className="mt-10 text-xl text-background">{it.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-background/65">
-                {it.text}
-              </p>
-              <ArrowRight className="mt-8 h-4 w-4 text-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <h3 className="mt-10 text-xl">{it.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-background/75">{it.text}</p>
             </motion.div>
           ))}
         </div>
@@ -587,58 +592,15 @@ function Region() {
 }
 
 function StateMap() {
-  // Stylized minimalist SP state silhouette
+  // Use a provided raster image for the State map. Place the image at src/assets/mapa-vale-do-paraiba.png
   return (
     <div className="relative aspect-square w-full max-w-lg">
-      <svg viewBox="0 0 500 500" className="h-full w-full">
-        <defs>
-          <radialGradient id="glow" cx="58%" cy="48%" r="18%">
-            <stop offset="0%" stopColor="oklch(0.86 0.12 80)" stopOpacity="0.55" />
-            <stop offset="100%" stopColor="oklch(0.86 0.12 80)" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <motion.path
-          initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 2, ease: "easeInOut" }}
-          d="M70,210 C90,170 130,140 180,135 C220,130 250,110 290,115 C340,120 380,100 420,130 C450,155 460,210 445,255 C430,300 440,340 410,370 C375,400 320,395 280,380 C240,370 210,385 170,375 C130,365 95,350 80,310 C68,275 60,250 70,210 Z"
-          fill="oklch(0.96 0 0)"
-          stroke="var(--graphite)"
-          strokeWidth="1.2"
-        />
-        <circle cx="295" cy="245" r="60" fill="url(#glow)" />
-        {/* Vale do Paraíba region */}
-        <motion.path
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1.2, duration: 1 }}
-          d="M270,225 C295,215 325,220 345,235 C355,250 350,265 335,272 C310,285 285,280 268,265 C258,250 258,235 270,225 Z"
-          fill="var(--gold)"
-          fillOpacity="0.18"
-          stroke="var(--gold)"
-          strokeWidth="1"
-        />
-        {/* SJC marker */}
-        <motion.g
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1.6, duration: 0.6 }}
-        >
-          <circle cx="298" cy="248" r="6" fill="var(--gold)" />
-          <circle cx="298" cy="248" r="14" fill="none" stroke="var(--gold)" strokeOpacity="0.4" />
-          <circle cx="298" cy="248" r="22" fill="none" stroke="var(--gold)" strokeOpacity="0.2" />
-          <line x1="298" y1="248" x2="370" y2="190" stroke="var(--graphite)" strokeWidth="0.8" />
-          <text x="376" y="188" fontSize="12" fill="var(--graphite)" fontFamily="Inter">
-            São José dos Campos
-          </text>
-          <text x="376" y="204" fontSize="9" fill="var(--gold)" letterSpacing="2" fontFamily="Inter">
-            VALE DO PARAÍBA
-          </text>
-        </motion.g>
-      </svg>
+      <img
+        src={regionMap}
+        alt="Região de atuação — Vale do Paraíba"
+        className="h-full w-full object-contain"
+        loading="lazy"
+      />
     </div>
   );
 }
@@ -716,34 +678,39 @@ function FinalCTA() {
   };
 
   return (
-    <section id="contato" className="py-28 lg:py-36">
-      <div className="mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
-        <motion.div {...fadeUp}>
-          <Eyebrow>Cadastre-se</Eyebrow>
+    <section id="contato" className="bg-background py-28 lg:py-36">
+      <div className="mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-[0.95fr_0.85fr] lg:gap-20 lg:px-10">
+        <motion.div {...fadeUp} className="flex flex-col justify-center">
+          <div className="text-[11px] uppercase tracking-[0.32em] text-gold">Cadastre-se</div>
           <h2 className="mt-6 text-4xl leading-tight lg:text-5xl">
-            Receba oportunidades imobiliárias{" "}
-            <span className="italic">antes do mercado</span>.
+            Receba oportunidades imobiliárias <span className="italic text-gold">antes do mercado</span>.
           </h2>
-          <p className="mt-6 text-base text-muted-foreground">
+          <p className="mt-6 max-w-xl text-base text-muted-foreground">
             Cadastre-se para receber oportunidades selecionadas diretamente no
             WhatsApp, com curadoria e análise de potencial.
           </p>
-          <ul className="mt-8 space-y-3 text-sm text-graphite">
-            {["Sem spam — apenas oportunidades reais", "Análise de valorização incluída", "Atendimento humano e consultivo"].map(
-              (i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <span className="h-px w-6 bg-gold" /> {i}
-                </li>
-              ),
-            )}
+          <ul className="mt-8 space-y-4 text-sm text-graphite">
+            {[
+              "Sem spam — apenas oportunidades reais",
+              "Análise de valorização incluída",
+              "Atendimento humano e consultivo",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <span className="mt-1 h-px w-8 flex-shrink-0 bg-gold" />
+                <span>{item}</span>
+              </li>
+            ))}
           </ul>
         </motion.div>
 
         <motion.form
           {...fadeUp}
           onSubmit={handleSubmit(onSubmit)}
-          className="border border-border bg-background p-8 lg:p-10"
+          className="rounded-[1.75rem] border border-border bg-white p-10 shadow-[0_40px_90px_-70px_rgba(16,16,16,0.25)]"
         >
+          <div className="mb-8 border-b border-border pb-6 text-sm uppercase tracking-[0.28em] text-muted-foreground">
+            Preencha seus dados
+          </div>
           <Field
             icon={<UserIcon className="h-4 w-4" />}
             label="Nome"
@@ -767,7 +734,7 @@ function FinalCTA() {
           />
           <button
             type="submit"
-            className="group mt-4 inline-flex w-full items-center justify-center gap-2 bg-foreground px-7 py-4 text-xs uppercase tracking-[0.2em] text-background transition-transform hover:-translate-y-0.5"
+            className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-foreground px-7 py-4 text-xs uppercase tracking-[0.2em] text-background transition-transform hover:-translate-y-0.5"
           >
             Quero receber oportunidades
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
