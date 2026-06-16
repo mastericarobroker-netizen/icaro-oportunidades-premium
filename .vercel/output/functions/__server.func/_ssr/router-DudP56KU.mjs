@@ -26,7 +26,7 @@ import "../_libs/iceberg-js.mjs";
 import "../_libs/supabase__auth-js.mjs";
 import "tslib";
 import "../_libs/supabase__functions-js.mjs";
-const appCss = "/assets/styles-DjTvceqb.css";
+const appCss = "/assets/styles-ByWLb98I.css";
 function reportLovableError(error, context = {}) {
   if (typeof window === "undefined") return;
   window.__lovableEvents?.captureException?.(
@@ -161,7 +161,7 @@ const Route$2 = createFileRoute("/_authenticated")({
   },
   component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-const $$splitComponentImporter$1 = () => import("./index-DVamEbTd.mjs");
+const $$splitComponentImporter$1 = () => import("./index-oMULnHT1.mjs");
 const Route$1 = createFileRoute("/")({
   head: () => ({
     meta: [{
@@ -187,7 +187,7 @@ object({
   telefone: string().trim().min(8, "Telefone inválido").max(20),
   email: string().trim().email("E-mail inválido").max(120)
 });
-const $$splitComponentImporter = () => import("./dashboard-B49u8Ulg.mjs");
+const $$splitComponentImporter = () => import("./dashboard-YFm9CJ1E.mjs");
 const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [{

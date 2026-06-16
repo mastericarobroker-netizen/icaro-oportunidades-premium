@@ -1,9 +1,9 @@
 import { j as jsxRuntimeExports, r as reactExports } from "../_libs/react.mjs";
 import { u as useForm } from "../_libs/react-hook-form.mjs";
 import { u } from "../_libs/hookform__resolvers.mjs";
-import { u as useServerFn, l as listFeaturedProperties, O as OFFER_LABEL, f as formatBRL } from "./properties.shared-Ci3ydUTg.mjs";
+import { u as useServerFn, l as listFeaturedProperties, O as OFFER_LABEL, f as formatBRL } from "./properties.shared-DV6CpjQv.mjs";
 import "../_libs/seroval.mjs";
-import { A as ArrowRight, X, M as Menu, a as MessageCircle, S as Sparkles, C as Check, B as Building2, G as Gavel, b as Banknote, R as Repeat, c as MapPin, U as User, P as Phone, d as Mail, I as Instagram, L as Linkedin, e as ChartLine, f as ShieldCheck, H as Handshake } from "../_libs/lucide-react.mjs";
+import { X, M as Menu, a as MessageCircle, B as Building2, G as Gavel, b as Banknote, R as Repeat, c as MapPin, U as User, P as Phone, d as Mail, A as ArrowRight, I as Instagram, L as Linkedin } from "../_libs/lucide-react.mjs";
 import { m as motion } from "../_libs/framer-motion.mjs";
 import { o as object, s as string } from "../_libs/zod.mjs";
 import "../_libs/tanstack__react-router.mjs";
@@ -19,12 +19,12 @@ import "crypto";
 import "async_hooks";
 import "stream";
 import "../_libs/isbot.mjs";
-import "./server-B0rHUgFE.mjs";
+import "./server-kS519hlt.mjs";
 import "node:async_hooks";
 import "../_libs/h3-v2.mjs";
 import "../_libs/rou3.mjs";
 import "../_libs/srvx.mjs";
-import "./auth-middleware-DuySSNHz.mjs";
+import "./auth-middleware-BY2Ftwuo.mjs";
 import "../_libs/supabase__supabase-js.mjs";
 import "../_libs/supabase__postgrest-js.mjs";
 import "../_libs/supabase__realtime-js.mjs";
@@ -36,8 +36,9 @@ import "tslib";
 import "../_libs/supabase__functions-js.mjs";
 import "../_libs/motion-dom.mjs";
 import "../_libs/motion-utils.mjs";
-const corpoImage = "/assets/%C3%8Dcaro_Corpo_inteiro2-B9vlphr6.jpeg";
-const heroImage = "/assets/%C3%8Dcaro_Foto_Perfil-zk1KlZA9.jpeg";
+const corpoImage = "/assets/icaro-corpo-inteiro2-ZrgfwBGi.jpg";
+const heroImage = "/assets/icaro-foto-perfil-C5sF9CmI.jpg";
+const regionMap = "/assets/mapa-vale-do-paraiba-CvwlwTHW.png";
 const WHATSAPP_NUMBER = "5512991968709";
 const WHATSAPP_MSG = encodeURIComponent("Olá Ícaro, gostaria de conhecer as oportunidades de investimento imobiliário.");
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
@@ -111,23 +112,26 @@ function Header() {
     });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: `fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "border-b border-border/60 bg-background/85 backdrop-blur-xl" : "bg-transparent"}`, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto flex h-18 max-w-7xl items-center justify-between px-6 py-5 lg:px-10", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: "#inicio", className: "group flex items-baseline gap-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display text-2xl tracking-tight", children: "Ícaro" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[11px] uppercase tracking-[0.28em] text-muted-foreground", children: "Imóveis" })
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "sticky top-0 z-50", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-b border-border bg-foreground text-background text-[10px] uppercase tracking-[0.28em]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto flex h-9 max-w-7xl items-center justify-between px-6 lg:px-10", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Curadoria de oportunidades Caixa e leilões · Vale do Paraíba" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hidden items-center gap-2 text-background/80 sm:flex", children: "Resposta em até 24h" })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `border-b border-border bg-background/95 transition-all duration-500 ${scrolled ? "backdrop-blur-xl shadow-sm" : ""}`, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: "#inicio", className: "group flex items-baseline gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display text-3xl tracking-tight text-foreground", children: "Ícaro" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] uppercase tracking-[0.32em] text-muted-foreground", children: "Imóveis" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "hidden items-center gap-8 lg:flex", children: nav.map((n) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: n.href, className: "text-sm uppercase tracking-[0.18em] text-graphite transition-colors hover:text-foreground", children: n.label }, n.href)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "hidden lg:block", children: /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: WHATSAPP_URL, target: "_blank", rel: "noreferrer", className: "inline-flex items-center justify-center gap-2 rounded-sm bg-foreground px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-background transition hover:bg-graphite", children: "Falar com Especialista" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { "aria-label": "Abrir menu", className: "lg:hidden", onClick: () => setOpen((v) => !v), children: open ? /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "h-5 w-5 text-foreground" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "h-5 w-5 text-foreground" }) })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "hidden items-center gap-9 lg:flex", children: nav.map((n) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: n.href, className: "text-sm text-graphite transition-colors hover:text-foreground", children: n.label }, n.href)) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "hidden lg:block", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: WHATSAPP_URL, target: "_blank", rel: "noreferrer", className: "group inline-flex items-center gap-2 border border-foreground bg-foreground px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-background transition-all hover:bg-transparent hover:text-foreground", children: [
-        "Falar com Especialista",
-        /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" })
-      ] }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { "aria-label": "Abrir menu", className: "lg:hidden", onClick: () => setOpen((v) => !v), children: open ? /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, { className: "h-5 w-5" }) })
-    ] }),
-    open && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-t border-border bg-background lg:hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "flex flex-col gap-1 px-6 py-4", children: [
-      nav.map((n) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: n.href, onClick: () => setOpen(false), className: "border-b border-border py-3 text-sm text-graphite", children: n.label }, n.href)),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: WHATSAPP_URL, target: "_blank", rel: "noreferrer", className: "mt-3 inline-flex items-center justify-center gap-2 bg-foreground px-5 py-3 text-xs uppercase tracking-[0.18em] text-background", children: "Falar com Especialista" })
-    ] }) })
+      open && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-t border-border bg-background lg:hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "flex flex-col gap-1 px-6 py-4", children: [
+        nav.map((n) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: n.href, onClick: () => setOpen(false), className: "border-b border-border py-3 text-sm text-graphite", children: n.label }, n.href)),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: WHATSAPP_URL, target: "_blank", rel: "noreferrer", className: "mt-3 inline-flex items-center justify-center gap-2 rounded-sm bg-foreground px-5 py-3 text-xs uppercase tracking-[0.18em] text-background", children: "Falar com Especialista" })
+      ] }) })
+    ] })
   ] });
 }
 function Eyebrow({
@@ -139,30 +143,26 @@ function Eyebrow({
   ] });
 }
 function Hero() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "inicio", className: "relative isolate overflow-hidden pt-32 lg:pt-40", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto grid max-w-7xl gap-16 px-6 pb-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-10 lg:pb-32", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { ...fadeUp, className: "flex flex-col justify-center", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Eyebrow, { children: "Investimentos imobiliários · Vale do Paraíba" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("h1", { className: "mt-7 text-balance text-5xl leading-[1.03] tracking-tight lg:text-[4.25rem]", children: [
-        "Invista em imóveis com",
-        " ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic text-graphite", children: "inteligência" }),
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "inicio", className: "relative overflow-hidden bg-background py-24 lg:py-28", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mx-auto max-w-7xl px-6 lg:px-10", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { ...fadeUp, className: "max-w-2xl", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[11px] uppercase tracking-[0.36em] text-muted-foreground", children: "Investimentos imobiliários · Vale do Paraíba" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("h1", { className: "mt-8 text-[3.8rem] leading-[0.94] tracking-[-0.04em] text-foreground sm:text-[4.5rem] lg:text-[5.5rem]", children: [
+        "Invista em imóveis com ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic text-gold", children: "inteligência" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
         "e ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic text-graphite", children: "segurança" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic text-gold", children: "segurança" }),
         "."
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-7 max-w-xl text-base leading-relaxed text-muted-foreground lg:text-lg", children: "Especialista em imóveis Caixa, oportunidades abaixo do valor de mercado e investimentos imobiliários no Vale do Paraíba." }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-10 flex flex-wrap gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: "#contato", className: "group inline-flex items-center gap-2 bg-foreground px-7 py-4 text-xs uppercase tracking-[0.2em] text-background transition-transform hover:-translate-y-0.5", children: [
-          "Quero receber oportunidades",
-          /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-4 w-4 transition-transform group-hover:translate-x-1" })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: WHATSAPP_URL, target: "_blank", rel: "noreferrer", className: "inline-flex items-center gap-2 border border-foreground/80 px-7 py-4 text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:bg-foreground hover:text-background", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-8 max-w-xl text-base leading-8 text-muted-foreground lg:text-lg", children: "Especialista em imóveis Caixa, oportunidades abaixo do valor de mercado e investimentos imobiliários no Vale do Paraíba." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-12 flex flex-wrap gap-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "#contato", className: "inline-flex items-center justify-center gap-2 rounded-sm bg-foreground px-8 py-4 text-xs uppercase tracking-[0.2em] text-background transition hover:bg-graphite", children: "Quero receber oportunidades" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: WHATSAPP_URL, target: "_blank", rel: "noreferrer", className: "inline-flex items-center justify-center gap-2 rounded-sm border border-foreground px-8 py-4 text-xs uppercase tracking-[0.2em] text-foreground transition hover:bg-foreground hover:text-background", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(MessageCircle, { className: "h-4 w-4" }),
           " Falar no WhatsApp"
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("dl", { className: "mt-14 grid grid-cols-3 gap-6 border-t border-border pt-8 text-left", children: [["+10", "Cidades atendidas"], ["100%", "Análise consultiva"], ["24h", "Resposta ágil"]].map(([k, v]) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("dl", { className: "mt-16 grid max-w-xl grid-cols-3 gap-4 border-t border-border pt-8 text-left", children: [["+10", "Cidades atendidas"], ["100%", "Análise consultiva"], ["24h", "Resposta ágil"]].map(([k, v]) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("dt", { className: "font-display text-3xl text-foreground", children: k }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("dd", { className: "mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground", children: v })
       ] }, v)) })
@@ -177,38 +177,32 @@ function Hero() {
       duration: 1.1,
       ease: [0.22, 1, 0.36, 1]
     }, className: "relative", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative aspect-[4/5] w-full overflow-hidden", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: heroImage, alt: "Ícaro — Especialista em Investimentos Imobiliários", width: 1600, height: 1200, className: "h-full w-full object-cover object-top" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent" })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute -bottom-6 -left-6 hidden w-64 bg-background p-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.25)] sm:block", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-gold", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { className: "h-3 w-3" }),
-          " Curadoria"
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-3 font-display text-xl leading-snug", children: "Oportunidades antes do mercado." })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-hidden rounded-[2rem] border border-border bg-white shadow-[0_40px_120px_-80px_rgba(16,16,16,0.16)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: heroImage, alt: "Ícaro — Especialista em Investimentos Imobiliários", width: 1600, height: 1200, className: "h-full w-full object-cover object-top" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute -top-6 right-4 hidden w-56 rounded border border-border bg-background/95 px-4 py-3 text-xs shadow-xl sm:block", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[9px] uppercase tracking-[0.32em] text-muted-foreground", children: "Especialista" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-1 font-medium text-foreground", children: "Imóveis Caixa" })
       ] })
     ] })
-  ] }) });
+  ] }) }) });
 }
 function Authority() {
   const indicators = ["Imóveis abaixo do mercado", "Oportunidades Caixa", "Análise de investimento", "Atendimento personalizado"];
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "sobre", className: "border-t border-border bg-secondary/40 py-28 lg:py-36", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 lg:px-10", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(motion.div, { ...fadeUp, className: "relative", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative aspect-[4/5] overflow-hidden bg-secondary", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: corpoImage, alt: "Ícaro — Especialista em Investimentos Imobiliários", loading: "lazy", className: "h-full w-full object-cover grayscale-[15%]" }) }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { ...fadeUp, className: "flex flex-col justify-center", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Eyebrow, { children: "Sobre" }),
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "sobre", className: "border-t border-border bg-background py-28 lg:py-36", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-10", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(motion.div, { ...fadeUp, className: "relative overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_40px_80px_-44px_rgba(16,16,16,0.16)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: corpoImage, alt: "Ícaro — Especialista em Investimentos Imobiliários", loading: "lazy", className: "h-full w-full object-cover" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { ...fadeUp, className: "relative flex flex-col justify-center", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[11px] uppercase tracking-[0.32em] text-gold", children: "Sobre" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-6 text-4xl leading-tight lg:text-5xl", children: [
         "Seu especialista em ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic", children: "investimentos" }),
-        " ",
-        "imobiliários."
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic text-gold", children: "investimentos" }),
+        " imobiliários."
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-6 text-base leading-relaxed text-muted-foreground lg:text-lg", children: "Atuo auxiliando investidores e compradores a encontrar imóveis com alto potencial de valorização, oportunidades Caixa e imóveis de leilão — com foco em geração de patrimônio e rentabilidade." }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-10 grid gap-4 sm:grid-cols-2", children: indicators.map((i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "group flex items-center gap-3 border border-border bg-background px-5 py-5 transition-colors hover:border-gold", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "grid h-8 w-8 shrink-0 place-items-center border border-gold/40 text-gold", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "h-3.5 w-3.5" }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm tracking-wide", children: i })
-      ] }, i)) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-8 font-display text-lg italic text-graphite", children: "“Patrimônio se constrói com critério, dados e oportunidades certas.”" })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-6 max-w-xl text-base leading-relaxed text-muted-foreground lg:text-lg", children: "Atuo auxiliando investidores e compradores a encontrar imóveis com alto potencial de valorização, oportunidades Caixa e imóveis de leilão — com foco em geração de patrimônio e rentabilidade." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-12 grid gap-4 sm:grid-cols-2", children: indicators.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "rounded-[0.75rem] border border-border bg-white p-5 shadow-sm", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3 text-sm text-foreground", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "mt-1 h-4 w-4 rounded border border-gold bg-gold/10" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
+      ] }) }, item)) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-10 max-w-xl text-sm italic text-graphite", children: "“Patrimônio se constrói com critério, dados e oportunidades certas.”" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "pointer-events-none absolute right-0 top-0 text-[9rem] font-display font-light text-foreground/5", children: "01" })
     ] })
   ] }) });
 }
@@ -283,28 +277,24 @@ function Properties() {
 }
 function BenefitsImpl() {
   const items = [{
-    icon: Sparkles,
     title: "Curadoria Especializada",
     text: "Seleção das melhores oportunidades."
   }, {
-    icon: ChartLine,
     title: "Análise de Potencial",
     text: "Avaliação de valorização e retorno."
   }, {
-    icon: ShieldCheck,
     title: "Segurança Jurídica",
     text: "Acompanhamento completo do processo."
   }, {
-    icon: Handshake,
     title: "Atendimento Consultivo",
     text: "Suporte do início ao fim."
   }];
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "beneficios", className: "py-28 lg:py-36", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto max-w-7xl px-6 lg:px-10", children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "beneficios", className: "border-t border-border bg-background py-28 lg:py-36", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto max-w-7xl px-6 lg:px-10", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { ...fadeUp, className: "max-w-2xl", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Eyebrow, { children: "Benefícios" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[11px] uppercase tracking-[0.32em] text-gold", children: "Benefícios" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "mt-6 text-4xl leading-tight lg:text-5xl", children: "Por que investir com a Ícaro Imóveis?" })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-16 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2 lg:grid-cols-4", children: items.map((it, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { initial: {
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-16 overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_30px_80px_-44px_rgba(16,16,16,0.12)]", children: items.map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { initial: {
       opacity: 0,
       y: 20
     }, whileInView: {
@@ -315,12 +305,22 @@ function BenefitsImpl() {
     }, transition: {
       duration: 0.6,
       delay: idx * 0.08
-    }, className: "group relative bg-background p-10 transition-colors hover:bg-secondary/60", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(it.icon, { className: "h-7 w-7 text-gold", strokeWidth: 1.4 }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "mt-8 text-xl", children: it.title }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-3 text-sm leading-relaxed text-muted-foreground", children: it.text }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "absolute bottom-0 left-0 h-px w-0 bg-gold transition-all duration-500 group-hover:w-full" })
-    ] }, it.title)) })
+    }, className: `grid gap-4 px-8 py-7 ${idx < items.length - 1 ? "border-b border-border" : ""}`, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-2xl text-gold", children: [
+            "0",
+            idx + 1
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-xl text-foreground", children: item.title })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm uppercase tracking-[0.18em] text-muted-foreground", children: [
+          "0",
+          idx + 1
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm leading-relaxed text-muted-foreground", children: item.text })
+    ] }, item.title)) })
   ] }) });
 }
 function Opportunities() {
@@ -341,43 +341,44 @@ function Opportunities() {
     title: "Imóveis para Revenda",
     text: "Oportunidades de curto prazo com margem de valorização."
   }];
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "oportunidades", className: "relative bg-foreground py-28 text-background lg:py-36", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto max-w-7xl px-6 lg:px-10", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { ...fadeUp, className: "max-w-2xl", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-gold-soft", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-8 bg-gold" }),
-        " Oportunidades"
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-6 text-4xl leading-tight lg:text-5xl", children: [
-        "Oportunidades que podem",
-        " ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic text-gold-soft", children: "gerar patrimônio" }),
-        "."
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4", children: items.map((it, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { initial: {
-      opacity: 0,
-      y: 24
-    }, whileInView: {
-      opacity: 1,
-      y: 0
-    }, viewport: {
-      once: true
-    }, transition: {
-      duration: 0.6,
-      delay: idx * 0.08
-    }, className: "group relative overflow-hidden border border-background/15 bg-background/[0.03] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-gold hover:bg-background/[0.06]", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(it.icon, { className: "h-7 w-7 text-gold-soft", strokeWidth: 1.4 }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-sm text-background/40", children: [
-          "0",
-          idx + 1
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { id: "oportunidades", className: "relative overflow-hidden bg-foreground py-28 text-background lg:py-36", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 opacity-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-full w-full bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_32%)]" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative mx-auto max-w-7xl px-6 lg:px-10", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { ...fadeUp, className: "max-w-2xl", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-gold-soft", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-8 bg-gold" }),
+          " Oportunidades"
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-6 text-4xl leading-tight lg:text-5xl", children: [
+          "Oportunidades que podem ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic text-gold", children: "gerar patrimônio" }),
+          "."
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "mt-10 text-xl text-background", children: it.title }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-3 text-sm leading-relaxed text-background/65", children: it.text }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "mt-8 h-4 w-4 text-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" })
-    ] }, it.title)) })
-  ] }) });
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4", children: items.map((it, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { initial: {
+        opacity: 0,
+        y: 24
+      }, whileInView: {
+        opacity: 1,
+        y: 0
+      }, viewport: {
+        once: true
+      }, transition: {
+        duration: 0.6,
+        delay: idx * 0.08
+      }, className: "group relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/5 p-8 text-background transition-all duration-500 hover:-translate-y-1 hover:border-gold/40 hover:bg-white/10", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(it.icon, { className: "h-7 w-7 text-gold-soft", strokeWidth: 1.4 }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-sm text-gold/60", children: [
+            "0",
+            idx + 1
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "mt-10 text-xl", children: it.title }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-3 text-sm leading-relaxed text-background/75", children: it.text })
+      ] }, it.title)) })
+    ] })
+  ] });
 }
 function Region() {
   const cities = ["Estado de São Paulo", "São José dos Campos", "Jacareí", "Taubaté", "Caçapava", "Pindamonhangaba", "Vale do Paraíba"];
@@ -403,54 +404,7 @@ function Region() {
   ] }) });
 }
 function StateMap() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative aspect-square w-full max-w-lg", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { viewBox: "0 0 500 500", className: "h-full w-full", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("defs", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("radialGradient", { id: "glow", cx: "58%", cy: "48%", r: "18%", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "0%", stopColor: "oklch(0.86 0.12 80)", stopOpacity: "0.55" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("stop", { offset: "100%", stopColor: "oklch(0.86 0.12 80)", stopOpacity: "0" })
-    ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(motion.path, { initial: {
-      pathLength: 0,
-      opacity: 0
-    }, whileInView: {
-      pathLength: 1,
-      opacity: 1
-    }, viewport: {
-      once: true
-    }, transition: {
-      duration: 2,
-      ease: "easeInOut"
-    }, d: "M70,210 C90,170 130,140 180,135 C220,130 250,110 290,115 C340,120 380,100 420,130 C450,155 460,210 445,255 C430,300 440,340 410,370 C375,400 320,395 280,380 C240,370 210,385 170,375 C130,365 95,350 80,310 C68,275 60,250 70,210 Z", fill: "oklch(0.96 0 0)", stroke: "var(--graphite)", strokeWidth: "1.2" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "295", cy: "245", r: "60", fill: "url(#glow)" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(motion.path, { initial: {
-      opacity: 0
-    }, whileInView: {
-      opacity: 1
-    }, viewport: {
-      once: true
-    }, transition: {
-      delay: 1.2,
-      duration: 1
-    }, d: "M270,225 C295,215 325,220 345,235 C355,250 350,265 335,272 C310,285 285,280 268,265 C258,250 258,235 270,225 Z", fill: "var(--gold)", fillOpacity: "0.18", stroke: "var(--gold)", strokeWidth: "1" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.g, { initial: {
-      opacity: 0,
-      scale: 0
-    }, whileInView: {
-      opacity: 1,
-      scale: 1
-    }, viewport: {
-      once: true
-    }, transition: {
-      delay: 1.6,
-      duration: 0.6
-    }, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "298", cy: "248", r: "6", fill: "var(--gold)" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "298", cy: "248", r: "14", fill: "none", stroke: "var(--gold)", strokeOpacity: "0.4" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "298", cy: "248", r: "22", fill: "none", stroke: "var(--gold)", strokeOpacity: "0.2" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "298", y1: "248", x2: "370", y2: "190", stroke: "var(--graphite)", strokeWidth: "0.8" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("text", { x: "376", y: "188", fontSize: "12", fill: "var(--graphite)", fontFamily: "Inter", children: "São José dos Campos" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("text", { x: "376", y: "204", fontSize: "9", fill: "var(--gold)", letterSpacing: "2", fontFamily: "Inter", children: "VALE DO PARAÍBA" })
-    ] })
-  ] }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative aspect-square w-full max-w-lg", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: regionMap, alt: "Região de atuação — Vale do Paraíba", className: "h-full w-full object-contain", loading: "lazy" }) });
 }
 function Testimonials() {
   const items = [{
@@ -508,27 +462,26 @@ function FinalCTA() {
     setSent(true);
     reset();
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "contato", className: "py-28 lg:py-36", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-2 lg:gap-20 lg:px-10", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { ...fadeUp, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Eyebrow, { children: "Cadastre-se" }),
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "contato", className: "bg-background py-28 lg:py-36", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-[0.95fr_0.85fr] lg:gap-20 lg:px-10", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { ...fadeUp, className: "flex flex-col justify-center", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[11px] uppercase tracking-[0.32em] text-gold", children: "Cadastre-se" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-6 text-4xl leading-tight lg:text-5xl", children: [
-        "Receba oportunidades imobiliárias",
-        " ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic", children: "antes do mercado" }),
+        "Receba oportunidades imobiliárias ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic text-gold", children: "antes do mercado" }),
         "."
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-6 text-base text-muted-foreground", children: "Cadastre-se para receber oportunidades selecionadas diretamente no WhatsApp, com curadoria e análise de potencial." }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "mt-8 space-y-3 text-sm text-graphite", children: ["Sem spam — apenas oportunidades reais", "Análise de valorização incluída", "Atendimento humano e consultivo"].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "flex items-center gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "h-px w-6 bg-gold" }),
-        " ",
-        i
-      ] }, i)) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-6 max-w-xl text-base text-muted-foreground", children: "Cadastre-se para receber oportunidades selecionadas diretamente no WhatsApp, com curadoria e análise de potencial." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "mt-8 space-y-4 text-sm text-graphite", children: ["Sem spam — apenas oportunidades reais", "Análise de valorização incluída", "Atendimento humano e consultivo"].map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "flex items-start gap-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "mt-1 h-px w-8 flex-shrink-0 bg-gold" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: item })
+      ] }, item)) })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.form, { ...fadeUp, onSubmit: handleSubmit(onSubmit), className: "border border-border bg-background p-8 lg:p-10", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.form, { ...fadeUp, onSubmit: handleSubmit(onSubmit), className: "rounded-[1.75rem] border border-border bg-white p-10 shadow-[0_40px_90px_-70px_rgba(16,16,16,0.25)]", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-8 border-b border-border pb-6 text-sm uppercase tracking-[0.28em] text-muted-foreground", children: "Preencha seus dados" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Field, { icon: /* @__PURE__ */ jsxRuntimeExports.jsx(User, { className: "h-4 w-4" }), label: "Nome", error: formState.errors.nome?.message, ...register("nome") }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Field, { icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "h-4 w-4" }), label: "Telefone", type: "tel", placeholder: "(12) 99999-9999", error: formState.errors.telefone?.message, ...register("telefone") }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Field, { icon: /* @__PURE__ */ jsxRuntimeExports.jsx(Mail, { className: "h-4 w-4" }), label: "E-mail", type: "email", error: formState.errors.email?.message, ...register("email") }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("button", { type: "submit", className: "group mt-4 inline-flex w-full items-center justify-center gap-2 bg-foreground px-7 py-4 text-xs uppercase tracking-[0.2em] text-background transition-transform hover:-translate-y-0.5", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("button", { type: "submit", className: "group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-foreground px-7 py-4 text-xs uppercase tracking-[0.2em] text-background transition-transform hover:-translate-y-0.5", children: [
         "Quero receber oportunidades",
         /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-4 w-4 transition-transform group-hover:translate-x-1" })
       ] }),

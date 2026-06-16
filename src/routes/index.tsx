@@ -25,8 +25,8 @@ import {
   ArrowRight,
   Check,
 } from "lucide-react";
-import corpoImage from "@/assets/Ícaro_Corpo_inteiro2.jpg";
-import heroImage from "@/assets/Ícaro_Foto_Perfil.jpg";
+import corpoImage from "@/assets/icaro-corpo-inteiro2.jpg";
+import heroImage from "@/assets/icaro-foto-perfil.jpg";
 import regionMap from "@/assets/mapa-vale-do-paraiba.png";
 import { useServerFn } from "@tanstack/react-start";
 import { listFeaturedProperties } from "@/lib/properties.functions";
