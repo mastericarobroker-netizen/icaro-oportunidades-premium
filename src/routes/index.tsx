@@ -270,6 +270,10 @@ function Hero() {
               </div>
               <div className="mt-1 font-medium text-foreground">Imóveis Caixa</div>
             </div>
+            <div className="absolute left-1/2 bottom-4 hidden -translate-x-1/2 rounded border border-border bg-background/95 px-4 py-3 text-xs shadow-xl sm:block">
+              <div className="text-[9px] uppercase tracking-[0.24em] text-muted-foreground">Corretor de Imóveis</div>
+              <div className="mt-1 font-medium text-foreground">CRECI-SP 324595F</div>
+            </div>
           </motion.div>
         </div>
       </div>
