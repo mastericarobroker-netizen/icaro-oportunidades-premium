@@ -1,15 +1,14 @@
-// Client-side (and SSR-safe) Supabase client.
-// Lazy-loads `@supabase/supabase-js` inside the factory. If the package
-// is missing or env vars are absent, returns a safe fallback client.
+// Client-side (and SSR-safe) Supabase stub.
+//
+// Supabase is not configured in this project. This module exports a
+// safe no-op fallback for any operation. It never tries to load the
+// @supabase/supabase-js package, so the app can build and run without
+// the dependency.
 
-import type { Database } from "./types";
+const NOT_CONFIGURED =
+  "Supabase is not configured in this project. Auth and database features are disabled.";
 
-const SUPABASE_NOT_INSTALLED =
-  "Supabase client package not installed. Run `npm i @supabase/supabase-js` if you need it.";
-const SUPABASE_MISSING_ENV = (missing: string[]) =>
-  `Missing Supabase environment variable(s): ${missing.join(", ")}. Set them in Vercel project settings.`;
-
-function buildFallback(message: string): any {
+function buildFallback(): any {
   const queryFallback: any = {
     select() {
       return this;
@@ -27,7 +26,7 @@ function buildFallback(message: string): any {
       return this;
     },
     then(resolve: (v: any) => any) {
-      return resolve({ data: null, error: new Error(message) });
+      return resolve({ data: null, error: new Error(NOT_CONFIGURED) });
     },
     catch() {
       return this;
@@ -35,77 +34,28 @@ function buildFallback(message: string): any {
   };
   return {
     auth: {
-      getSession: async () => ({ data: { session: null }, error: null }),
+      getSession: async () => ({
+        data: { session: null },
+        error: new Error(NOT_CONFIGURED),
+      }),
       signInWithPassword: async () => ({
         data: null,
-        error: new Error(message),
+        error: new Error(NOT_CONFIGURED),
       }),
-      signUp: async () => ({ data: null, error: new Error(message) }),
-      getUser: async () => ({ data: { user: null }, error: null }),
+      signUp: async () => ({ data: null, error: new Error(NOT_CONFIGURED) }),
+      getUser: async () => ({
+        data: { user: null },
+        error: new Error(NOT_CONFIGURED),
+      }),
+      signOut: async () => ({ error: null }),
+      onAuthStateChange: () => ({
+        data: { subscription: { unsubscribe: () => {} } },
+      }),
     },
     from: () => queryFallback,
   };
 }
 
-async function createSupabaseClient(): Promise<any> {
-  const SUPABASE_URL =
-    (typeof import.meta !== "undefined" &&
-      (import.meta as any).env?.VITE_SUPABASE_URL) ||
-    (typeof process !== "undefined" && process.env?.SUPABASE_URL);
-  const SUPABASE_PUBLISHABLE_KEY =
-    (typeof import.meta !== "undefined" &&
-      (import.meta as any).env?.VITE_SUPABASE_PUBLISHABLE_KEY) ||
-    (typeof process !== "undefined" && process.env?.SUPABASE_PUBLISHABLE_KEY);
+const _client = buildFallback();
 
-  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
-    const missing = [
-      ...(!SUPABASE_URL ? ["VITE_SUPABASE_URL / SUPABASE_URL"] : []),
-      ...(!SUPABASE_PUBLISHABLE_KEY
-        ? ["VITE_SUPABASE_PUBLISHABLE_KEY / SUPABASE_PUBLISHABLE_KEY"]
-        : []),
-    ];
-    const msg = SUPABASE_MISSING_ENV(missing);
-    console.error(`[Supabase] ${msg}`);
-    return buildFallback(msg);
-  }
-
-  let createClientFn: any;
-  try {
-    const mod = await import("@supabase/supabase-js");
-    createClientFn = mod?.createClient;
-  } catch {
-    console.error(`[Supabase] ${SUPABASE_NOT_INSTALLED}`);
-    return buildFallback(SUPABASE_NOT_INSTALLED);
-  }
-
-  if (typeof createClientFn !== "function") {
-    console.error(`[Supabase] ${SUPABASE_NOT_INSTALLED}`);
-    return buildFallback(SUPABASE_NOT_INSTALLED);
-  }
-
-  return createClientFn<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-    auth: {
-      storage: typeof window !== "undefined" ? window.localStorage : undefined,
-      persistSession: true,
-      autoRefreshToken: true,
-    },
-  });
-}
-
-// Lazy singleton: created on first property access (proxy).
-let _clientPromise: Promise<any> | undefined;
-const _proxy: any = new Proxy(
-  {},
-  {
-    get(_t, prop) {
-      if (!_clientPromise) _clientPromise = createSupabaseClient();
-      return async (...args: any[]) => {
-        const client = await _clientPromise!;
-        const v = (client as any)[prop];
-        return typeof v === "function" ? v.apply(client, args) : v;
-      };
-    },
-  },
-);
-
-export const supabase = _proxy;
+export const supabase = _client;
