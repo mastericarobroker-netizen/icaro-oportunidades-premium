@@ -20,6 +20,9 @@ dist-ssr
 .vercel/
 .vercel/output/
 
+# Build artifacts (chunks hasheados gerados pelo Vite/Nitro)
+public/assets/
+
 # Sharp cache
 .cache/
 
