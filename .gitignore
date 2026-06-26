@@ -16,6 +16,13 @@ dist-ssr
 .nitro
 *.local
 
+# Vercel
+.vercel/
+.vercel/output/
+
+# Sharp cache
+.cache/
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
