@@ -1,12 +1,5 @@
 import { createStart, createMiddleware } from "@tanstack/react-start";
-
 import { renderErrorPage } from "./lib/error-page";
-
-// Supabase is not configured in this project, so we don't attach any auth
-// header. The placeholder middleware is kept here as a no-op pass-through
-// so existing routes/middleware that import `@/integrations/supabase/auth-attacher`
-// keep working if they ever do.
-import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
   try {
@@ -24,6 +17,6 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 });
 
 export const startInstance = createStart(() => ({
-  functionMiddleware: [attachSupabaseAuth],
+  functionMiddleware: [],
   requestMiddleware: [errorMiddleware],
 }));
