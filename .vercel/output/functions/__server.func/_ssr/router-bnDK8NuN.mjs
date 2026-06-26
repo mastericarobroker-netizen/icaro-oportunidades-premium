@@ -1,9 +1,12 @@
 import { Q as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { Q as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
 import { c as createRouter, a as createRootRouteWithContext, u as useRouter, L as Link, O as Outlet, H as HeadContent, S as Scripts, b as createFileRoute, l as lazyRouteComponent } from "../_libs/tanstack__react-router.mjs";
-import { S as redirect } from "../_libs/tanstack__router-core.mjs";
+import { S as notFound, T as redirect } from "../_libs/tanstack__router-core.mjs";
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { s as supabase } from "./client-YydkYU_u.mjs";
+import { c as createServerFn, T as TSS_SERVER_FUNCTION, g as getServerFnById } from "./server-BybmBoyu.mjs";
+import "../_libs/gray-matter.mjs";
+import "../_libs/marked.mjs";
 import { o as object, s as string } from "../_libs/zod.mjs";
 import "../_libs/react-dom.mjs";
 import "util";
@@ -26,7 +29,18 @@ import "../_libs/iceberg-js.mjs";
 import "../_libs/supabase__auth-js.mjs";
 import "tslib";
 import "../_libs/supabase__functions-js.mjs";
-const appCss = "/assets/styles-ByWLb98I.css";
+import "node:async_hooks";
+import "../_libs/h3-v2.mjs";
+import "../_libs/rou3.mjs";
+import "../_libs/srvx.mjs";
+import "fs";
+import "../_libs/section-matter.mjs";
+import "../_libs/kind-of.mjs";
+import "../_libs/extend-shallow.mjs";
+import "../_libs/is-extendable.mjs";
+import "../_libs/js-yaml.mjs";
+import "../_libs/strip-bom-string.mjs";
+const appCss = "/assets/styles-B0zI7tMc.css";
 function reportLovableError(error, context = {}) {
   if (typeof window === "undefined") return;
   window.__lovableEvents?.captureException?.(
@@ -60,7 +74,7 @@ function NotFoundComponent() {
 }
 function ErrorComponent({ error, reset }) {
   console.error(error);
-  const router = useRouter();
+  const router2 = useRouter();
   reactExports.useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
@@ -72,7 +86,7 @@ function ErrorComponent({ error, reset }) {
         "button",
         {
           onClick: () => {
-            router.invalidate();
+            router2.invalidate();
             reset();
           },
           className: "inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90",
@@ -90,7 +104,7 @@ function ErrorComponent({ error, reset }) {
     ] })
   ] }) });
 }
-const Route$4 = createRootRouteWithContext()({
+const Route$6 = createRootRouteWithContext()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -132,20 +146,20 @@ function RootShell({ children }) {
   ] });
 }
 function RootComponent() {
-  const { queryClient } = Route$4.useRouteContext();
+  const { queryClient } = Route$6.useRouteContext();
   return /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) });
 }
-const $$splitComponentImporter$3 = () => import("./auth-CxY2dn-A.mjs");
-const Route$3 = createFileRoute("/auth")({
+const $$splitComponentImporter$5 = () => import("./auth-CxY2dn-A.mjs");
+const Route$5 = createFileRoute("/auth")({
   head: () => ({
     meta: [{
       title: "Acesso · Ícaro Imóveis"
     }]
   }),
-  component: lazyRouteComponent($$splitComponentImporter$3, "component")
+  component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-const $$splitComponentImporter$2 = () => import("./route-BFsOu0JM.mjs");
-const Route$2 = createFileRoute("/_authenticated")({
+const $$splitComponentImporter$4 = () => import("./route-BFsOu0JM.mjs");
+const Route$4 = createFileRoute("/_authenticated")({
   ssr: false,
   beforeLoad: async () => {
     const {
@@ -159,10 +173,10 @@ const Route$2 = createFileRoute("/_authenticated")({
       user: data.user
     };
   },
-  component: lazyRouteComponent($$splitComponentImporter$2, "component")
+  component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-const $$splitComponentImporter$1 = () => import("./index-oMULnHT1.mjs");
-const Route$1 = createFileRoute("/")({
+const $$splitComponentImporter$3 = () => import("./index-b5P8dytW.mjs");
+const Route$3 = createFileRoute("/")({
   head: () => ({
     meta: [{
       title: "Ícaro Imóveis — Investimentos Imobiliários no Vale do Paraíba"
@@ -180,14 +194,83 @@ const Route$1 = createFileRoute("/")({
       content: "website"
     }]
   }),
-  component: lazyRouteComponent($$splitComponentImporter$1, "component")
+  component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
 object({
   nome: string().trim().min(2, "Informe seu nome").max(80),
   telefone: string().trim().min(8, "Telefone inválido").max(20),
   email: string().trim().email("E-mail inválido").max(120)
 });
-const $$splitComponentImporter = () => import("./dashboard-YFm9CJ1E.mjs");
+var createSsrRpc = (functionId) => {
+  const url = "/_serverFn/" + functionId;
+  const serverFnMeta = { id: functionId };
+  const fn = async (...args) => {
+    return (await getServerFnById(functionId))(...args);
+  };
+  return Object.assign(fn, {
+    url,
+    serverFnMeta,
+    [TSS_SERVER_FUNCTION]: true
+  });
+};
+const fetchListPosts = createServerFn({
+  method: "GET"
+}).handler(createSsrRpc("01d7b8d55108efe92da01387e132465f0b2884453fda6035613d5215d98897b5"));
+const fetchPostBySlug = createServerFn({
+  method: "GET"
+}).validator((input) => {
+  if (typeof input !== "object" || input === null) throw new Error("invalid input");
+  const slug = input.slug;
+  if (typeof slug !== "string") throw new Error("slug must be a string");
+  return {
+    slug
+  };
+}).handler(createSsrRpc("c163344acd0184b6b6e7fbe91bb81e77e346fbdca91f8127f1a2f7632d5d50a7"));
+const $$splitComponentImporter$2 = () => import("./index-CyUBgdq0.mjs");
+const Route$2 = createFileRoute("/blog/")({
+  head: () => ({
+    meta: [{
+      title: "Blog · Ícaro Imóveis — Mercado, Caixa e Investimentos"
+    }, {
+      name: "description",
+      content: "Artigos sobre investimentos imobiliários, imóveis Caixa, leilões e o mercado do Vale do Paraíba."
+    }, {
+      property: "og:title",
+      content: "Blog · Ícaro Imóveis"
+    }, {
+      property: "og:description",
+      content: "Conteúdo sobre mercado imobiliário, curadoria Caixa e estratégias de investimento."
+    }, {
+      property: "og:type",
+      content: "website"
+    }]
+  }),
+  loader: () => fetchListPosts(),
+  component: lazyRouteComponent($$splitComponentImporter$2, "component")
+});
+const $$splitComponentImporter$1 = () => import("../_slug-FtAJ2s0a.mjs");
+const $$splitNotFoundComponentImporter = () => import("../_slug-Dz4oC4Sa.mjs");
+const Route$1 = createFileRoute("/blog/$slug")({
+  loader: async ({
+    params
+  }) => {
+    const post = await fetchPostBySlug({
+      data: {
+        slug: params.slug
+      }
+    });
+    if (!post) throw notFound();
+    const allPosts = await fetchListPosts();
+    const related = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+    return {
+      post,
+      related
+    };
+  },
+  notFoundComponent: lazyRouteComponent($$splitNotFoundComponentImporter, "notFoundComponent"),
+  component: lazyRouteComponent($$splitComponentImporter$1, "component")
+});
+const $$splitComponentImporter = () => import("./dashboard-D5Y4SmAk.mjs");
 const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [{
@@ -196,19 +279,29 @@ const Route = createFileRoute("/_authenticated/dashboard")({
   }),
   component: lazyRouteComponent($$splitComponentImporter, "component")
 });
-const AuthRoute = Route$3.update({
+const AuthRoute = Route$5.update({
   id: "/auth",
   path: "/auth",
-  getParentRoute: () => Route$4
+  getParentRoute: () => Route$6
 });
-const AuthenticatedRouteRoute = Route$2.update({
+const AuthenticatedRouteRoute = Route$4.update({
   id: "/_authenticated",
-  getParentRoute: () => Route$4
+  getParentRoute: () => Route$6
 });
-const IndexRoute = Route$1.update({
+const IndexRoute = Route$3.update({
   id: "/",
   path: "/",
-  getParentRoute: () => Route$4
+  getParentRoute: () => Route$6
+});
+const BlogIndexRoute = Route$2.update({
+  id: "/blog/",
+  path: "/blog/",
+  getParentRoute: () => Route$6
+});
+const BlogSlugRoute = Route$1.update({
+  id: "/blog/$slug",
+  path: "/blog/$slug",
+  getParentRoute: () => Route$6
 });
 const AuthenticatedDashboardRoute = Route.update({
   id: "/dashboard",
@@ -222,19 +315,28 @@ const AuthenticatedRouteRouteWithChildren = AuthenticatedRouteRoute._addFileChil
 const rootRouteChildren = {
   IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  AuthRoute
+  AuthRoute,
+  BlogSlugRoute,
+  BlogIndexRoute
 };
-const routeTree = Route$4._addFileChildren(rootRouteChildren)._addFileTypes();
+const routeTree = Route$6._addFileChildren(rootRouteChildren)._addFileTypes();
 const getRouter = () => {
   const queryClient = new QueryClient();
-  const router = createRouter({
+  const router2 = createRouter({
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0
   });
-  return router;
+  return router2;
 };
-export {
+const router = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
   getRouter
+}, Symbol.toStringTag, { value: "Module" }));
+export {
+  Route$2 as R,
+  Route$1 as a,
+  createSsrRpc as c,
+  router as r
 };

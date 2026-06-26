@@ -28,9 +28,6 @@ import {
 import corpoImage from "@/assets/icaro-corpo-inteiro2.jpg";
 import heroImage from "@/assets/icaro-foto-perfil.jpg";
 import regionMap from "@/assets/mapa-vale-do-paraiba.png";
-import { useServerFn } from "@tanstack/react-start";
-import { listFeaturedProperties } from "@/lib/properties.functions";
-import { OFFER_LABEL, formatBRL, type Property } from "@/lib/properties.shared";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -62,9 +59,9 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 const nav = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre", href: "#sobre" },
-  { label: "Imóveis", href: "#imoveis" },
   { label: "Oportunidades", href: "#oportunidades" },
   { label: "Benefícios", href: "#beneficios" },
+  { label: "Blog", href: "/blog" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -98,7 +95,6 @@ function Index() {
       <main>
         <Hero />
         <Authority />
-        <Properties />
         <Benefits />
         <Opportunities />
         <Region />
@@ -333,119 +329,6 @@ function Authority() {
 
 function Benefits() {
   return BenefitsImpl();
-}
-
-function PropertyCard({ p }: { p: Property }) {
-  const waMsg = encodeURIComponent(
-    `Olá Ícaro! Tenho interesse no imóvel: ${p.title}${p.city ? ` (${p.city})` : ""}.`,
-  );
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="group flex flex-col border border-border bg-background transition-colors hover:border-gold"
-    >
-      <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        {p.image_url ? (
-          <img
-            src={p.image_url}
-            alt={p.title}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        ) : (
-          <div className="grid h-full w-full place-items-center text-muted-foreground">
-            <Building2 className="h-10 w-10" strokeWidth={1.2} />
-          </div>
-        )}
-        <span className="absolute left-4 top-4 bg-background/95 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-foreground">
-          {OFFER_LABEL[p.offer_type]}
-        </span>
-      </div>
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-display text-xl leading-snug">{p.title}</h3>
-        {(p.address || p.city) && (
-          <p className="mt-2 inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-            <MapPin className="h-3 w-3 text-gold" />
-            {[p.address, p.city].filter(Boolean).join(" · ")}
-          </p>
-        )}
-        {p.description && (
-          <p className="mt-3 line-clamp-2 text-sm text-muted-foreground">{p.description}</p>
-        )}
-        <div className="mt-6 border-t border-border pt-4">
-          {p.appraisal_value && (
-            <div className="flex items-center justify-between text-xs text-muted-foreground">
-              <span>Avaliação</span>
-              <span className="line-through">{formatBRL(p.appraisal_value)}</span>
-            </div>
-          )}
-          <div className="mt-1 flex items-end justify-between gap-2">
-            <span className="text-[10px] uppercase tracking-[0.22em] text-graphite">Por</span>
-            <span className="font-display text-3xl text-foreground">
-              {formatBRL(p.price)}
-            </span>
-          </div>
-        </div>
-        <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-6 inline-flex items-center justify-center gap-2 bg-foreground px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-background transition-transform hover:-translate-y-0.5"
-        >
-          Tenho interesse <ArrowRight className="h-3.5 w-3.5" />
-        </a>
-      </div>
-    </motion.article>
-  );
-}
-
-function Properties() {
-  const fetcher = useServerFn(listFeaturedProperties);
-  const [items, setItems] = useState<Property[] | null>(null);
-
-  useEffect(() => {
-    fetcher()
-      .then((r) => setItems(r.properties as Property[]))
-      .catch(() => setItems([]));
-  }, [fetcher]);
-
-  return (
-    <section id="imoveis" className="border-t border-border py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <motion.div {...fadeUp} className="flex flex-wrap items-end justify-between gap-6">
-          <div className="max-w-2xl">
-            <Eyebrow>Imóveis disponíveis</Eyebrow>
-            <h2 className="mt-6 text-4xl leading-tight lg:text-5xl">
-              Oportunidades <span className="italic">selecionadas</span> agora.
-            </h2>
-            <p className="mt-5 text-base text-muted-foreground">
-              Imóveis com curadoria — leilões, licitações e venda direta — abaixo
-              do valor de mercado.
-            </p>
-          </div>
-        </motion.div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {items === null && (
-            <>
-              {[0, 1, 2].map((i) => (
-                <div key={i} className="h-[480px] animate-pulse border border-border bg-secondary/40" />
-              ))}
-            </>
-          )}
-          {items && items.length === 0 && (
-            <div className="col-span-full border border-dashed border-border p-16 text-center text-sm text-muted-foreground">
-              Em breve novas oportunidades. Cadastre-se para receber em primeira mão.
-            </div>
-          )}
-          {items && items.map((p) => <PropertyCard key={p.id} p={p} />)}
-        </div>
-      </div>
-    </section>
-  );
 }
 
 function BenefitsImpl() {

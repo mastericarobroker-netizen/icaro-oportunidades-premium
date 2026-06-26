@@ -1,27 +1,26 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { d as useNavigate, u as useRouter, L as Link } from "../_libs/tanstack__react-router.mjs";
-import { u as useServerFn, O as OFFER_LABEL, f as formatBRL, a as OFFER_TYPES, c as checkIsAdmin, b as listAllProperties, d as deleteProperty, e as updateProperty, g as createProperty } from "./properties.shared-DV6CpjQv.mjs";
+import { m as isRedirect } from "../_libs/tanstack__router-core.mjs";
 import { s as supabase } from "./client-YydkYU_u.mjs";
+import { c as createSsrRpc } from "./router-bnDK8NuN.mjs";
+import { c as createServerFn } from "./server-BybmBoyu.mjs";
+import { r as requireSupabaseAuth } from "./auth-middleware-DYmhNa5j.mjs";
+import "../_libs/gray-matter.mjs";
+import "../_libs/marked.mjs";
 import "../_libs/seroval.mjs";
-import { e as LogOut, f as ArrowLeft, g as Plus, h as Pencil, T as Trash2 } from "../_libs/lucide-react.mjs";
-import "../_libs/tanstack__router-core.mjs";
-import "../_libs/tanstack__history.mjs";
-import "../_libs/cookie-es.mjs";
-import "../_libs/seroval-plugins.mjs";
-import "node:stream/web";
-import "node:stream";
+import { g as LogOut, f as ArrowLeft, h as Plus, i as Pencil, T as Trash2 } from "../_libs/lucide-react.mjs";
+import { o as object, s as string, b as boolean, n as number, l as literal, _ as _enum } from "../_libs/zod.mjs";
 import "../_libs/react-dom.mjs";
 import "util";
 import "crypto";
 import "async_hooks";
 import "stream";
+import "node:stream";
 import "../_libs/isbot.mjs";
-import "./server-kS519hlt.mjs";
-import "node:async_hooks";
-import "../_libs/h3-v2.mjs";
-import "../_libs/rou3.mjs";
-import "../_libs/srvx.mjs";
-import "./auth-middleware-BY2Ftwuo.mjs";
+import "../_libs/tanstack__history.mjs";
+import "../_libs/cookie-es.mjs";
+import "../_libs/seroval-plugins.mjs";
+import "node:stream/web";
 import "../_libs/supabase__supabase-js.mjs";
 import "../_libs/supabase__postgrest-js.mjs";
 import "../_libs/supabase__realtime-js.mjs";
@@ -31,7 +30,86 @@ import "../_libs/iceberg-js.mjs";
 import "../_libs/supabase__auth-js.mjs";
 import "tslib";
 import "../_libs/supabase__functions-js.mjs";
-import "../_libs/zod.mjs";
+import "../_libs/tanstack__query-core.mjs";
+import "../_libs/tanstack__react-query.mjs";
+import "node:async_hooks";
+import "../_libs/h3-v2.mjs";
+import "../_libs/rou3.mjs";
+import "../_libs/srvx.mjs";
+import "fs";
+import "../_libs/section-matter.mjs";
+import "../_libs/kind-of.mjs";
+import "../_libs/extend-shallow.mjs";
+import "../_libs/is-extendable.mjs";
+import "../_libs/js-yaml.mjs";
+import "../_libs/strip-bom-string.mjs";
+function useServerFn(serverFn) {
+  const router = useRouter();
+  return reactExports.useCallback(async (...args) => {
+    try {
+      const res = await serverFn(...args);
+      if (isRedirect(res)) throw res;
+      return res;
+    } catch (err) {
+      if (isRedirect(err)) {
+        err.options._fromLocation = router.stores.location.get();
+        return router.navigate(router.resolveRedirect(err).options);
+      }
+      throw err;
+    }
+  }, [router, serverFn]);
+}
+const offerEnum = _enum(["primeiro_leilao", "segundo_leilao", "licitacao_aberta", "venda_online", "venda_direta"]);
+const propertyInput = object({
+  title: string().trim().min(2).max(140),
+  address: string().trim().max(200).optional().nullable(),
+  city: string().trim().max(80).optional().nullable(),
+  description: string().trim().max(2e3).optional().nullable(),
+  image_url: string().trim().url().max(500).optional().nullable().or(literal("")),
+  offer_type: offerEnum,
+  appraisal_value: number().nonnegative().nullable().optional(),
+  price: number().nonnegative(),
+  active: boolean().optional(),
+  featured: boolean().optional()
+});
+createServerFn({
+  method: "GET"
+}).handler(createSsrRpc("addd376039e3a24ebf829cce249140afd5a8c0d8a344f48bf44db3fbf3379cee"));
+const listAllProperties = createServerFn({
+  method: "GET"
+}).middleware([requireSupabaseAuth]).handler(createSsrRpc("cad61ffb3d9079dcbfd0e18f0c282eb196dacf445495b00a645ace68243a63aa"));
+const createProperty = createServerFn({
+  method: "POST"
+}).middleware([requireSupabaseAuth]).inputValidator((input) => propertyInput.parse(input)).handler(createSsrRpc("619526cbde28e94a562fc50dceb0e32525822dc6afcee34179675bfe73a44eb5"));
+const updateProperty = createServerFn({
+  method: "POST"
+}).middleware([requireSupabaseAuth]).inputValidator((input) => propertyInput.extend({
+  id: string().uuid()
+}).parse(input)).handler(createSsrRpc("9df3dd3cbd2f1730624b2df425a61ed753eaa0ab538af16f0f692e1fce63fcd3"));
+const deleteProperty = createServerFn({
+  method: "POST"
+}).middleware([requireSupabaseAuth]).inputValidator((input) => object({
+  id: string().uuid()
+}).parse(input)).handler(createSsrRpc("c99808efb321bc30567e74ff512f26d3b4722dbb401173cb2130f52a674941ce"));
+const checkIsAdmin = createServerFn({
+  method: "GET"
+}).middleware([requireSupabaseAuth]).handler(createSsrRpc("43a8a8954d4316cf6f20a05d8d6344510e824f94e53a66565d59cc4f5a9313b3"));
+const OFFER_TYPES = [
+  { value: "primeiro_leilao", label: "1º Leilão" },
+  { value: "segundo_leilao", label: "2º Leilão" },
+  { value: "licitacao_aberta", label: "Licitação Aberta" },
+  { value: "venda_online", label: "Venda Online" },
+  { value: "venda_direta", label: "Venda Direta" }
+];
+const OFFER_LABEL = OFFER_TYPES.reduce(
+  (acc, o) => ({ ...acc, [o.value]: o.label }),
+  {}
+);
+const formatBRL = (n) => n == null ? "—" : new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+  maximumFractionDigits: 0
+}).format(Number(n));
 const emptyForm = {
   title: "",
   address: "",

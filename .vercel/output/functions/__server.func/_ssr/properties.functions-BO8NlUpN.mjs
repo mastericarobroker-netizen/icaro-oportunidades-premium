@@ -1,5 +1,6 @@
-import { T as TSS_SERVER_FUNCTION, a as createServerFn } from "./server-kS519hlt.mjs";
-import { r as requireSupabaseAuth } from "./auth-middleware-BY2Ftwuo.mjs";
+import { c as createServerRpc } from "./createServerRpc-CdETA5OW.mjs";
+import { c as createServerFn } from "./server-BybmBoyu.mjs";
+import { r as requireSupabaseAuth } from "./auth-middleware-DYmhNa5j.mjs";
 import { s as supabase } from "./client-YydkYU_u.mjs";
 import "../_libs/seroval.mjs";
 import "../_libs/react.mjs";
@@ -30,14 +31,6 @@ import "../_libs/iceberg-js.mjs";
 import "../_libs/supabase__auth-js.mjs";
 import "tslib";
 import "../_libs/supabase__functions-js.mjs";
-var createServerRpc = (serverFnMeta, splitImportFn) => {
-  const url = "/_serverFn/" + serverFnMeta.id;
-  return Object.assign(splitImportFn, {
-    url,
-    serverFnMeta,
-    [TSS_SERVER_FUNCTION]: true
-  });
-};
 const offerEnum = _enum(["primeiro_leilao", "segundo_leilao", "licitacao_aberta", "venda_online", "venda_direta"]);
 const propertyInput = object({
   title: string().trim().min(2).max(140),

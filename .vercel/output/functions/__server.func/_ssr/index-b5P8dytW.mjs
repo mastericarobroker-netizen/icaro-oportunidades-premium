@@ -1,39 +1,9 @@
 import { j as jsxRuntimeExports, r as reactExports } from "../_libs/react.mjs";
 import { u as useForm } from "../_libs/react-hook-form.mjs";
 import { u } from "../_libs/hookform__resolvers.mjs";
-import { u as useServerFn, l as listFeaturedProperties, O as OFFER_LABEL, f as formatBRL } from "./properties.shared-DV6CpjQv.mjs";
-import "../_libs/seroval.mjs";
 import { X, M as Menu, a as MessageCircle, B as Building2, G as Gavel, b as Banknote, R as Repeat, c as MapPin, U as User, P as Phone, d as Mail, A as ArrowRight, I as Instagram, L as Linkedin } from "../_libs/lucide-react.mjs";
 import { m as motion } from "../_libs/framer-motion.mjs";
 import { o as object, s as string } from "../_libs/zod.mjs";
-import "../_libs/tanstack__react-router.mjs";
-import "../_libs/tanstack__router-core.mjs";
-import "../_libs/tanstack__history.mjs";
-import "../_libs/cookie-es.mjs";
-import "../_libs/seroval-plugins.mjs";
-import "node:stream/web";
-import "node:stream";
-import "../_libs/react-dom.mjs";
-import "util";
-import "crypto";
-import "async_hooks";
-import "stream";
-import "../_libs/isbot.mjs";
-import "./server-kS519hlt.mjs";
-import "node:async_hooks";
-import "../_libs/h3-v2.mjs";
-import "../_libs/rou3.mjs";
-import "../_libs/srvx.mjs";
-import "./auth-middleware-BY2Ftwuo.mjs";
-import "../_libs/supabase__supabase-js.mjs";
-import "../_libs/supabase__postgrest-js.mjs";
-import "../_libs/supabase__realtime-js.mjs";
-import "../_libs/supabase__phoenix.mjs";
-import "../_libs/supabase__storage-js.mjs";
-import "../_libs/iceberg-js.mjs";
-import "../_libs/supabase__auth-js.mjs";
-import "tslib";
-import "../_libs/supabase__functions-js.mjs";
 import "../_libs/motion-dom.mjs";
 import "../_libs/motion-utils.mjs";
 const corpoImage = "/assets/icaro-corpo-inteiro2-ZrgfwBGi.jpg";
@@ -49,14 +19,14 @@ const nav = [{
   label: "Sobre",
   href: "#sobre"
 }, {
-  label: "Imóveis",
-  href: "#imoveis"
-}, {
   label: "Oportunidades",
   href: "#oportunidades"
 }, {
   label: "Benefícios",
   href: "#beneficios"
+}, {
+  label: "Blog",
+  href: "/blog"
 }, {
   label: "Contato",
   href: "#contato"
@@ -90,7 +60,6 @@ function Index() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(Hero, {}),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Authority, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Properties, {}),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Benefits, {}),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Opportunities, {}),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Region, {}),
@@ -208,72 +177,6 @@ function Authority() {
 }
 function Benefits() {
   return BenefitsImpl();
-}
-function PropertyCard({
-  p
-}) {
-  const waMsg = encodeURIComponent(`Olá Ícaro! Tenho interesse no imóvel: ${p.title}${p.city ? ` (${p.city})` : ""}.`);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.article, { initial: {
-    opacity: 0,
-    y: 24
-  }, whileInView: {
-    opacity: 1,
-    y: 0
-  }, viewport: {
-    once: true
-  }, transition: {
-    duration: 0.6
-  }, className: "group flex flex-col border border-border bg-background transition-colors hover:border-gold", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative aspect-[4/3] overflow-hidden bg-secondary", children: [
-      p.image_url ? /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: p.image_url, alt: p.title, loading: "lazy", className: "h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid h-full w-full place-items-center text-muted-foreground", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Building2, { className: "h-10 w-10", strokeWidth: 1.2 }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "absolute left-4 top-4 bg-background/95 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-foreground", children: OFFER_LABEL[p.offer_type] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-1 flex-col p-6", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-display text-xl leading-snug", children: p.title }),
-      (p.address || p.city) && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "mt-2 inline-flex items-center gap-1.5 text-xs text-muted-foreground", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "h-3 w-3 text-gold" }),
-        [p.address, p.city].filter(Boolean).join(" · ")
-      ] }),
-      p.description && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-3 line-clamp-2 text-sm text-muted-foreground", children: p.description }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-6 border-t border-border pt-4", children: [
-        p.appraisal_value && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between text-xs text-muted-foreground", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Avaliação" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "line-through", children: formatBRL(p.appraisal_value) })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-1 flex items-end justify-between gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] uppercase tracking-[0.22em] text-graphite", children: "Por" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display text-3xl text-foreground", children: formatBRL(p.price) })
-        ] })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`, target: "_blank", rel: "noreferrer", className: "mt-6 inline-flex items-center justify-center gap-2 bg-foreground px-5 py-3 text-[11px] uppercase tracking-[0.2em] text-background transition-transform hover:-translate-y-0.5", children: [
-        "Tenho interesse ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowRight, { className: "h-3.5 w-3.5" })
-      ] })
-    ] })
-  ] });
-}
-function Properties() {
-  const fetcher = useServerFn(listFeaturedProperties);
-  const [items, setItems] = reactExports.useState(null);
-  reactExports.useEffect(() => {
-    fetcher().then((r) => setItems(r.properties)).catch(() => setItems([]));
-  }, [fetcher]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "imoveis", className: "border-t border-border py-28 lg:py-36", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto max-w-7xl px-6 lg:px-10", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(motion.div, { ...fadeUp, className: "flex flex-wrap items-end justify-between gap-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-2xl", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Eyebrow, { children: "Imóveis disponíveis" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-6 text-4xl leading-tight lg:text-5xl", children: [
-        "Oportunidades ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "italic", children: "selecionadas" }),
-        " agora."
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-5 text-base text-muted-foreground", children: "Imóveis com curadoria — leilões, licitações e venda direta — abaixo do valor de mercado." })
-    ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3", children: [
-      items === null && /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: [0, 1, 2].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-[480px] animate-pulse border border-border bg-secondary/40" }, i)) }),
-      items && items.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "col-span-full border border-dashed border-border p-16 text-center text-sm text-muted-foreground", children: "Em breve novas oportunidades. Cadastre-se para receber em primeira mão." }),
-      items && items.map((p) => /* @__PURE__ */ jsxRuntimeExports.jsx(PropertyCard, { p }, p.id))
-    ] })
-  ] }) });
 }
 function BenefitsImpl() {
   const items = [{

@@ -75,23 +75,23 @@ const createLucideIcon = (iconName, iconNode) => {
   Component.displayName = toPascalCase(iconName);
   return Component;
 };
-const __iconNode$i = [
+const __iconNode$k = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$i);
-const __iconNode$h = [
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$k);
+const __iconNode$j = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$h);
-const __iconNode$g = [
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$j);
+const __iconNode$i = [
   ["rect", { width: "20", height: "12", x: "2", y: "6", rx: "2", key: "9lu3g6" }],
   ["circle", { cx: "12", cy: "12", r: "2", key: "1c9p78" }],
   ["path", { d: "M6 12h.01M18 12h.01", key: "113zkx" }]
 ];
-const Banknote = createLucideIcon("banknote", __iconNode$g);
-const __iconNode$f = [
+const Banknote = createLucideIcon("banknote", __iconNode$i);
+const __iconNode$h = [
   ["path", { d: "M10 12h4", key: "a56b0p" }],
   ["path", { d: "M10 8h4", key: "1sr2af" }],
   ["path", { d: "M14 21v-3a2 2 0 0 0-4 0v3", key: "1rgiei" }],
@@ -104,7 +104,19 @@ const __iconNode$f = [
   ],
   ["path", { d: "M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16", key: "16ra0t" }]
 ];
-const Building2 = createLucideIcon("building-2", __iconNode$f);
+const Building2 = createLucideIcon("building-2", __iconNode$h);
+const __iconNode$g = [
+  ["path", { d: "M8 2v4", key: "1cmpym" }],
+  ["path", { d: "M16 2v4", key: "4m81vk" }],
+  ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
+  ["path", { d: "M3 10h18", key: "8toen8" }]
+];
+const Calendar = createLucideIcon("calendar", __iconNode$g);
+const __iconNode$f = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M12 6v6l4 2", key: "mmk7yg" }]
+];
+const Clock = createLucideIcon("clock", __iconNode$f);
 const __iconNode$e = [
   ["path", { d: "m14 13-8.381 8.38a1 1 0 0 1-3.001-3l8.384-8.381", key: "pgg06f" }],
   ["path", { d: "m16 16 6-6", key: "vzrcl6" }],
@@ -223,6 +235,7 @@ const X = createLucideIcon("x", __iconNode);
 export {
   ArrowRight as A,
   Building2 as B,
+  Calendar as C,
   Gavel as G,
   Instagram as I,
   Linkedin as L,
@@ -236,8 +249,9 @@ export {
   Banknote as b,
   MapPin as c,
   Mail as d,
-  LogOut as e,
+  Clock as e,
   ArrowLeft as f,
-  Plus as g,
-  Pencil as h
+  LogOut as g,
+  Plus as h,
+  Pencil as i
 };
