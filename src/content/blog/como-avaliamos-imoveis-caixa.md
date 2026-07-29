@@ -2,7 +2,7 @@
 title: "Como avaliamos imóveis da Caixa: o método por trás da curadoria"
 slug: "como-avaliamos-imoveis-caixa"
 excerpt: "Entenda os 5 critérios que utilizamos para separar uma boa oportunidade de um mau negócio nos imóveis do banco."
-cover: ""
+cover: "/blog/capa-como-avaliamos-imoveis-caixa.jpg"
 author: "Ícaro"
 publishedAt: "2026-06-10"
 tags: ["Caixa", "Curadoria", "Avaliação"]
