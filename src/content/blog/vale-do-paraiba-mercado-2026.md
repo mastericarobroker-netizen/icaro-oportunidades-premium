@@ -2,7 +2,7 @@
 title: "Vale do Paraíba em 2026: por que a região segue atrativa"
 slug: "vale-do-paraiba-mercado-2026"
 excerpt: "Dados, tendências e os motivos pelos quais o Vale do Paraíba continua sendo uma das regiões mais procuradas para investir em imóveis."
-cover: ""
+cover: "/blog/capa-vale-do-paraiba.png"
 author: "Ícaro"
 publishedAt: "2026-05-22"
 tags: ["Vale do Paraíba", "Mercado", "Tendências"]

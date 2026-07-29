@@ -2,7 +2,7 @@
 title: "Leilões judiciais: vale a pena para o primeiro investimento?"
 slug: "leiloes-judiciais-primeiro-investimento"
 excerpt: "Leilão judicial pode ser um ótimo negócio — mas exige preparo. Veja os prós, contras e o que avaliar antes de dar o primeiro lance."
-cover: ""
+cover: "/blog/capa-leiloes-judiciais.png"
 author: "Ícaro"
 publishedAt: "2026-04-15"
 tags: ["Leilões", "Primeiro Investimento", "Jurídico"]
