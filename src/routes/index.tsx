@@ -21,6 +21,7 @@ import {
   User as UserIcon,
   Instagram,
   Linkedin,
+  Youtube,
   MessageCircle,
   ArrowRight,
   Check,
@@ -732,6 +733,16 @@ function Footer() {
                 className="inline-flex items-center gap-2 hover:text-gold-soft"
               >
                 <Linkedin className="h-4 w-4" /> LinkedIn
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/@icarocorretordeimoveis_sjc"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 hover:text-gold-soft"
+              >
+                <Youtube className="h-4 w-4" /> YouTube
               </a>
             </li>
           </ul>
