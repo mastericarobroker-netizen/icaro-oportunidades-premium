@@ -38,6 +38,10 @@ export const Route = createFileRoute("/")({
         content:
           "Especialista em imóveis Caixa, leilões e oportunidades abaixo do valor de mercado em São José dos Campos e Vale do Paraíba.",
       },
+      { name: "robots", content: "index,follow" },
+      { property: "og:url", content: "https://icaroimoveis.com.br/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@icaroimoveis" },
       { property: "og:title", content: "Ícaro Imóveis — Invista com Inteligência" },
       {
         property: "og:description",
@@ -45,6 +49,9 @@ export const Route = createFileRoute("/")({
           "Curadoria de imóveis Caixa, leilões e oportunidades para geração de patrimônio no Vale do Paraíba.",
       },
       { property: "og:type", content: "website" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://icaroimoveis.com.br/" },
     ],
   }),
   component: Index,
@@ -709,7 +716,7 @@ function Footer() {
             </li>
             <li>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/icarocorretordeimoveis/"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 hover:text-gold-soft"

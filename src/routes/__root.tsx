@@ -77,20 +77,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Ícaro Imóveis — Investimentos Imobiliários" },
+      {
+        name: "description",
+        content:
+          "Especialista em imóveis Caixa, leilões e oportunidades abaixo do valor de mercado no Vale do Paraíba.",
+      },
+      { name: "author", content: "Ícaro Imóveis" },
+      { property: "og:title", content: "Ícaro Imóveis — Investimentos Imobiliários" },
+      {
+        property: "og:description",
+        content:
+          "Curadoria de imóveis Caixa, leilões e oportunidades para geração de patrimônio no Vale do Paraíba.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@icaroimoveis" },
+      { name: "twitter:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "canonical", href: "https://icaroimoveis.com.br/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -106,10 +117,36 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Ícaro Imóveis",
+        "url": "https://icaroimoveis.com.br",
+        "logo": "https://icaroimoveis.com.br/assets/icaro-hero.jpeg",
+        "sameAs": [
+          "https://www.instagram.com/icarocorretordeimoveis/",
+          "https://www.linkedin.com/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://icaroimoveis.com.br",
+        "name": "Ícaro Imóveis",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Ícaro Imóveis"
+        }
+      }
+    ]
+  });
+
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       </head>
       <body>
         {children}
