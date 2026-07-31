@@ -19,6 +19,41 @@ export const Route = createFileRoute("/blog/$slug")({
       .slice(0, 3);
     return { post, related };
   },
+  head: ({ loader }) => {
+    const post = (loader as LoaderData | undefined)?.post;
+    if (!post)
+      return {
+        meta: [{ title: "Artigo · Ícaro Imóveis" }],
+      };
+
+    let imageUrl = "https://icaroimoveis.com.br/assets/icaro-hero.jpeg";
+    if (post.cover) {
+      if (post.cover.startsWith("http")) {
+        imageUrl = post.cover;
+      } else {
+        // Prefer generated OG image: /blog/og-<basename>-1200x630.jpg
+        const basename = post.cover.split("/").pop() ?? "cover";
+        const nameNoExt = basename.replace(/\.[^.]+$/, "");
+        imageUrl = `https://icaroimoveis.com.br/blog/og-${nameNoExt}-1200x630.jpg`;
+      }
+    }
+
+    return {
+      meta: [
+        { title: `${post.title} · Ícaro Imóveis` },
+        { name: "description", content: post.excerpt ?? "" },
+        { name: "robots", content: "index,follow" },
+        { property: "og:title", content: post.title },
+        { property: "og:description", content: post.excerpt ?? "" },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: `https://icaroimoveis.com.br/blog/${post.slug}` },
+        { property: "og:image", content: imageUrl },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: imageUrl },
+      ],
+      links: [{ rel: "canonical", href: `https://icaroimoveis.com.br/blog/${post.slug}` }],
+    };
+  },
   notFoundComponent: () => <PostNotFound />,
   component: BlogPostPage,
 });

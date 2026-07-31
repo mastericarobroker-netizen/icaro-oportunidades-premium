@@ -12,6 +12,10 @@ export const Route = createFileRoute("/blog/")({
         content:
           "Artigos sobre investimentos imobiliários, imóveis Caixa, leilões e o mercado do Vale do Paraíba.",
       },
+      { name: "robots", content: "index,follow" },
+      { property: "og:url", content: "https://icaroimoveis.com.br/blog/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@icaroimoveis" },
       { property: "og:title", content: "Blog · Ícaro Imóveis" },
       {
         property: "og:description",
@@ -19,6 +23,9 @@ export const Route = createFileRoute("/blog/")({
           "Conteúdo sobre mercado imobiliário, curadoria Caixa e estratégias de investimento.",
       },
       { property: "og:type", content: "website" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://icaroimoveis.com.br/blog/" },
     ],
   }),
   loader: () => fetchListPosts(),
