@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -63,11 +63,36 @@ const WHATSAPP_MSG = encodeURIComponent(
   "Olá Ícaro, gostaria de conhecer as oportunidades de investimento imobiliário.",
 );
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
+const SUPABASE_BASE_URL = import.meta.env.VITE_SUPABASE_URL || "";
+const SUPABASE_API_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "";
+const SUPABASE_PROPERTIES_URL =
+  `${SUPABASE_BASE_URL}/rest/v1/properties?select=*&order=created_at.desc&limit=4`;
+const SUPABASE_HEADERS = {
+  apikey: SUPABASE_API_KEY,
+  Authorization: `Bearer ${SUPABASE_API_KEY}`,
+};
+const IMOVEIS_PORTAL_URL = "https://imoveis.icaroimoveis.com.br";
+const CALC_BASE_URL = "https://calc.icaroimoveis.com.br";
+
+type PropertyItem = {
+  id: string;
+  title?: string;
+  name?: string;
+  price?: number;
+  city?: string;
+  type?: string;
+  image_url?: string;
+  cover_image?: string;
+  main_image?: string;
+  photo?: string;
+  address?: { city?: string };
+};
 
 const nav = [
   { label: "Início", href: "#inicio" },
   { label: "Sobre", href: "#sobre" },
-  { label: "Oportunidades", href: "#oportunidades" },
+  { label: "Imóveis", href: "https://imoveis.icaroimoveis.com.br" },
+  { label: "Simulação", href: "https://calc.icaroimoveis.com.br" },
   { label: "Benefícios", href: "#beneficios" },
   { label: "Blog", href: "/blog" },
   { label: "Contato", href: "#contato" },
@@ -104,6 +129,8 @@ function Index() {
         <Hero />
         <Authority />
         <Benefits />
+        <QuickAuctionTeaser />
+        <OpportunityTeaser />
         <Opportunities />
         <Region />
         <Testimonials />
@@ -276,7 +303,7 @@ function Hero() {
             </div>
             <div className="absolute left-1/2 bottom-4 hidden -translate-x-1/2 rounded border border-border bg-background/95 px-4 py-3 text-xs shadow-xl sm:block">
               <div className="text-[9px] uppercase tracking-[0.24em] text-muted-foreground">Corretor de Imóveis</div>
-              <div className="mt-1 font-medium text-foreground">CRECI-SP 324595F</div>
+              <div className="mt-1 font-medium text-foreground">CRECI/SP 324595-F</div>
             </div>
           </motion.div>
         </div>
@@ -315,7 +342,7 @@ function Authority() {
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground lg:text-lg">
             Atuo auxiliando investidores e compradores a encontrar imóveis com
             alto potencial de valorização, oportunidades Caixa e imóveis de
-            leilão — com foco em geração de patrimônio e rentabilidade.
+            leilão Extrajudicial, além de oferecer serviços de consultoria — com foco em geração de patrimônio e rentabilidade.
           </p>
           <div className="mt-12 grid gap-4 sm:grid-cols-2">
             {indicators.map((item) => (
@@ -382,6 +409,211 @@ function BenefitsImpl() {
         </div>
       </div>
     </section>
+  );
+}
+
+function QuickAuctionTeaser() {
+  const [marketValue, setMarketValue] = useState("");
+  const [offerValue, setOfferValue] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!marketValue || !offerValue) {
+      setError("Preencha ambos os valores antes de seguir para a calculadora.");
+      return;
+    }
+
+    setError("");
+    const params = new URLSearchParams({
+      valorMercado: marketValue,
+      valorLance: offerValue,
+    });
+
+    window.location.href = `${CALC_BASE_URL}/?${params.toString()}`;
+  };
+
+  return (
+    <section className="border-t border-border bg-background py-28 lg:py-36">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <motion.div {...fadeUp} className="max-w-2xl">
+          <div className="text-[11px] uppercase tracking-[0.32em] text-gold">Simulador</div>
+          <h2 className="mt-6 text-4xl leading-tight lg:text-5xl">
+            Verifique a viabilidade do leilão em segundos.
+          </h2>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+            Informe o valor de mercado estimado e o valor do lance para acessar a calculadora já com os campos preenchidos.
+          </p>
+        </motion.div>
+
+        <motion.form
+          {...fadeUp}
+          onSubmit={handleSubmit}
+          className="mt-12 grid gap-6 rounded-[1.75rem] border border-border bg-white p-8 shadow-[0_30px_80px_-40px_rgba(16,16,16,0.12)] sm:grid-cols-[1fr_0.9fr]"
+        >
+          <div className="grid gap-6">
+            <label className="block">
+              <span className="mb-2 block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                Valor de Mercado Estimado
+              </span>
+              <input
+                type="number"
+                min="0"
+                step="1000"
+                value={marketValue}
+                onChange={(event) => setMarketValue(event.target.value)}
+                placeholder="500000"
+                className="w-full rounded-lg border border-border bg-background px-4 py-4 text-sm outline-none transition focus:border-gold"
+              />
+            </label>
+            <label className="block">
+              <span className="mb-2 block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                Valor de Lance Proposto
+              </span>
+              <input
+                type="number"
+                min="0"
+                step="1000"
+                value={offerValue}
+                onChange={(event) => setOfferValue(event.target.value)}
+                placeholder="300000"
+                className="w-full rounded-lg border border-border bg-background px-4 py-4 text-sm outline-none transition focus:border-gold"
+              />
+            </label>
+          </div>
+          <div className="flex flex-col justify-between rounded-[1.5rem] border border-border bg-foreground/5 p-6">
+            <div>
+              <p className="text-sm text-muted-foreground">
+                Ao enviar, você será direcionado para a calculadora com os valores já preenchidos.
+              </p>
+            </div>
+            <button
+              type="submit"
+              className="mt-6 inline-flex items-center justify-center rounded-sm bg-foreground px-6 py-4 text-xs uppercase tracking-[0.2em] text-background transition hover:bg-graphite"
+            >
+              Calcular Viabilidade
+            </button>
+            {error && <p className="mt-4 text-sm text-destructive">{error}</p>}
+          </div>
+        </motion.form>
+      </div>
+    </section>
+  );
+}
+
+function OpportunityTeaser() {
+  const [properties, setProperties] = useState<PropertyItem[]>([]);
+  const [status, setStatus] = useState<"idle" | "loading" | "loaded" | "error">("idle");
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+      controller.abort();
+      setStatus("error");
+    }, 2000);
+
+    setStatus("loading");
+
+    fetch(SUPABASE_PROPERTIES_URL, { signal: controller.signal, headers: SUPABASE_HEADERS })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Falha ao buscar propriedades");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data)) {
+          throw new Error("Dados inválidos");
+        }
+        setProperties(data.slice(0, 4));
+        setStatus("loaded");
+      })
+      .catch(() => {
+        setStatus("error");
+      })
+      .finally(() => {
+        window.clearTimeout(timeout);
+      });
+
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
+  }, []);
+
+  const isError = status === "error" || (status === "loaded" && properties.length === 0);
+
+  return (
+    <div className="mt-14 rounded-[1.75rem] border border-border bg-white p-8 shadow-[0_30px_80px_-40px_rgba(16,16,16,0.12)]">
+      <div className="grid gap-6 md:grid-cols-[1.5fr_1fr]">
+        <div>
+          <div className="text-[11px] uppercase tracking-[0.32em] text-gold">Portal de Imóveis</div>
+          <h3 className="mt-4 text-3xl leading-tight text-foreground lg:text-4xl">
+            Veja as melhores oportunidades no momento.
+          </h3>
+          <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            Use o botão abaixo para acessar o portal e conferir as melhores oportunidades disponíveis agora.
+          </p>
+        </div>
+        <div className="flex items-center justify-end">
+          <a
+            href={`${IMOVEIS_PORTAL_URL}/buscar?type=sale`}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center rounded-sm border border-foreground bg-foreground/5 px-5 py-3 text-xs uppercase tracking-[0.2em] text-foreground transition hover:bg-foreground hover:text-background"
+          >
+            Ver todas as oportunidades no mapa
+          </a>
+        </div>
+      </div>
+
+      {status === "loading" && (
+        <div className="mt-10 rounded-[1.5rem] border border-border bg-background/80 p-8 text-sm text-muted-foreground">
+          Carregando oportunidades...
+        </div>
+      )}
+
+      {!isError && status === "loaded" && (
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {properties.map((property) => {
+            const image = property.image_url || property.cover_image || property.main_image || property.photo;
+            const title = property.title || property.name || property.type || "Imóvel";
+            const location = property.city || property.address?.city || "São José dos Campos";
+            const price = property.price
+              ? `R$ ${property.price.toLocaleString("pt-BR")}`
+              : "Sob consulta";
+            return (
+              <a
+                key={property.id}
+                href={`${IMOVEIS_PORTAL_URL}/imovel/${property.id}`}
+                target="_blank"
+                rel="noreferrer"
+                className="group overflow-hidden rounded-[1.25rem] border border-border bg-secondary/10 transition hover:-translate-y-1 hover:border-gold/40"
+              >
+                <div className="h-44 w-full overflow-hidden bg-graphite/10">
+                  {image ? (
+                    <img
+                      src={image}
+                      alt={title}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center bg-foreground/10 text-center text-sm text-muted-foreground">
+                      Imagem do imóvel
+                    </div>
+                  )}
+                </div>
+                <div className="space-y-3 p-5 bg-white">
+                  <div className="text-sm uppercase tracking-[0.18em] text-gold/80">{title}</div>
+                  <div className="text-base font-semibold text-foreground">{price}</div>
+                  <div className="text-sm text-muted-foreground">{location}</div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }
 
