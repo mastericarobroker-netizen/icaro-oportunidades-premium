@@ -5,86 +5,86 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
-  Sparkles,
-  ShieldCheck,
-  LineChart,
-  Handshake,
-  Building2,
-  Gavel,
-  Banknote,
-  Repeat,
-  MapPin,
-  Menu,
-  X,
-  Phone,
-  Mail,
-  User as UserIcon,
-  Instagram,
-  Linkedin,
-  Youtube,
-  MessageCircle,
-  ArrowRight,
-  Check,
-} from "lucide-react";
-import corpoImage from "@/assets/icaro-corpo-inteiro2.jpg";
-import heroImage from "@/assets/icaro-foto-perfil.jpg";
-import regionMap from "@/assets/mapa-vale-do-paraiba.png";
+  function Hero() {
+    return (
+      <section id="inicio" className="relative overflow-hidden bg-background py-24 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+            <motion.div {...fadeUp} className="max-w-2xl">
+              <div className="text-[11px] uppercase tracking-[0.36em] text-muted-foreground">
+                Corretor de Imóveis · São José dos Campos
+              </div>
+              <h1 className="mt-8 text-[3.8rem] leading-[0.94] tracking-[-0.04em] text-foreground sm:text-[4.5rem] lg:text-[5.5rem]">
+                Invista em imóveis com <span className="italic text-gold"> inteligência </span>
+                <br /> e <span className="italic text-gold"> segurança</span>.
+              </h1>
+              <p className="mt-8 max-w-xl text-base leading-8 text-muted-foreground lg:text-lg">
+                Especialista em imóveis Caixa, oportunidades abaixo do valor de mercado e
+                investimentos imobiliários em São José dos Campos.
+              </p>
+              <div className="mt-12 flex flex-wrap gap-4">
+                <a
+                  href="#contato"
+                  className="inline-flex items-center justify-center gap-2 rounded-sm bg-foreground px-8 py-4 text-xs uppercase tracking-[0.2em] text-background transition hover:bg-graphite"
+                >
+                  Quero receber oportunidades
+                </a>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-sm border border-foreground px-8 py-4 text-xs uppercase tracking-[0.2em] text-foreground transition hover:bg-foreground hover:text-background"
+                >
+                  <MessageCircle className="h-4 w-4" /> Falar no WhatsApp
+                </a>
+              </div>
+              <dl className="mt-16 grid max-w-xl grid-cols-3 gap-4 border-t border-border pt-8 text-left">
+                {[
+                  ["+10", "Cidades atendidas"],
+                  ["100%", "Análise consultiva"],
+                  ["24h", "Resposta ágil"],
+                ].map(([k, v]) => (
+                  <div key={v}>
+                    <dt className="font-display text-3xl text-foreground">{k}</dt>
+                    <dd className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                      {v}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </motion.div>
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Ícaro Imóveis — Investimentos Imobiliários no Vale do Paraíba" },
-      {
-        name: "description",
-        content:
-          "Especialista em imóveis Caixa, leilões e oportunidades abaixo do valor de mercado em São José dos Campos e Vale do Paraíba.",
-      },
-      { name: "robots", content: "index,follow" },
-      { property: "og:url", content: "https://icaroimoveis.com.br/" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@icaroimoveis" },
-      { property: "og:title", content: "Ícaro Imóveis — Invista com Inteligência" },
-      {
-        property: "og:description",
-        content:
-          "Curadoria de imóveis Caixa, leilões e oportunidades para geração de patrimônio no Vale do Paraíba.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-    links: [
-      { rel: "canonical", href: "https://icaroimoveis.com.br/" },
-    ],
-  }),
-  component: Index,
-});
-
-const WHATSAPP_NUMBER = "5512991968709";
-const WHATSAPP_MSG = encodeURIComponent(
-  "Olá Ícaro, gostaria de conhecer as oportunidades de investimento imobiliário.",
-);
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
-const SUPABASE_BASE_URL = import.meta.env.VITE_SUPABASE_URL || "";
-const SUPABASE_API_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "";
-const SUPABASE_PROPERTIES_URL =
-  `${SUPABASE_BASE_URL}/rest/v1/properties?select=*&order=created_at.desc&limit=4`;
-const SUPABASE_HEADERS = {
-  apikey: SUPABASE_API_KEY,
-  Authorization: `Bearer ${SUPABASE_API_KEY}`,
-};
-const IMOVEIS_PORTAL_URL = "https://imoveis.icaroimoveis.com.br";
-const CALC_BASE_URL = "https://calc.icaroimoveis.com.br";
-
-type PropertyItem = {
-  id: string;
-  title?: string;
-  name?: string;
-  price?: number;
-  city?: string;
-  type?: string;
-  image_url?: string;
-  cover_image?: string;
-  main_image?: string;
-  photo?: string;
+            <motion.div
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              className="relative"
+            >
+              <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-[0_40px_120px_-80px_rgba(16,16,16,0.16)]">
+                <img
+                  src={heroImage}
+                  alt="Ícaro — Especialista em Investimentos Imobiliários"
+                  width={1600}
+                  height={1200}
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+              <div className="absolute -top-6 right-4 hidden w-56 rounded border border-border bg-background/95 px-4 py-3 text-xs shadow-xl sm:block">
+                <div className="text-[9px] uppercase tracking-[0.32em] text-muted-foreground">
+                  Especialista
+                </div>
+                <div className="mt-1 font-medium text-foreground">Imóveis Caixa</div>
+              </div>
+              <div className="absolute left-1/2 bottom-4 hidden -translate-x-1/2 rounded border border-border bg-background/95 px-4 py-3 text-xs shadow-xl sm:block">
+                <div className="text-[9px] uppercase tracking-[0.24em] text-muted-foreground">Corretor de Imóveis</div>
+                <div className="mt-1 font-medium text-foreground">CRECI/SP 324595-F</div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    );
+  }
   address?: { city?: string };
 };
 
@@ -238,15 +238,15 @@ function Hero() {
         <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <motion.div {...fadeUp} className="max-w-2xl">
             <div className="text-[11px] uppercase tracking-[0.36em] text-muted-foreground">
-              Investimentos imobiliários · Vale do Paraíba
+              Corretor de Imóveis · São José dos Campos
             </div>
             <h1 className="mt-8 text-[3.8rem] leading-[0.94] tracking-[-0.04em] text-foreground sm:text-[4.5rem] lg:text-[5.5rem]">
-              Invista em imóveis com <span className="italic text-gold">inteligência</span>
-              <br />e <span className="italic text-gold">segurança</span>.
+              Invista em imóveis com <span className="italic text-gold"> inteligência </span>
+              <br /> e <span className="italic text-gold"> segurança</span>.
             </h1>
             <p className="mt-8 max-w-xl text-base leading-8 text-muted-foreground lg:text-lg">
               Especialista em imóveis Caixa, oportunidades abaixo do valor de mercado e
-              investimentos imobiliários no Vale do Paraíba.
+              investimentos imobiliários em São José dos Campos.
             </p>
             <div className="mt-12 flex flex-wrap gap-4">
               <a
