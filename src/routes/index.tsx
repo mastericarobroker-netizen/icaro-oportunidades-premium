@@ -33,7 +33,7 @@ import regionMap from "@/assets/mapa-vale-do-paraiba.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ícaro Imóveis — Investimentos Imobiliários no Vale do Paraíba" },
+      { title: "Corretor de Imóveis - São José dos Campos" },
       {
         name: "description",
         content:
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://icaroimoveis.com.br/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@icaroimoveis" },
-      { property: "og:title", content: "Ícaro Imóveis — Invista com Inteligência" },
+      { property: "og:title", content: "Corretor de Imóveis - São José dos Campos" },
       {
         property: "og:description",
         content:
@@ -238,7 +238,7 @@ function Hero() {
         <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <motion.div {...fadeUp} className="max-w-2xl">
             <div className="text-[11px] uppercase tracking-[0.36em] text-muted-foreground">
-              Investimentos imobiliários · Vale do Paraíba
+              Corretor de Imóveis - São José dos Campos
             </div>
             <h1 className="mt-8 text-[3.8rem] leading-[0.94] tracking-[-0.04em] text-foreground sm:text-[4.5rem] lg:text-[5.5rem]">
               Invista em imóveis com <span className="italic text-gold">inteligência</span>

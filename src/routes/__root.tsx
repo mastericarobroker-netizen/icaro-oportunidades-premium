@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ícaro Imóveis — Investimentos Imobiliários" },
+      { title: "Corretor de Imóveis - São José dos Campos" },
       {
         name: "description",
         content:
           "Especialista em imóveis Caixa, leilões e oportunidades abaixo do valor de mercado no Vale do Paraíba.",
       },
       { name: "author", content: "Ícaro Imóveis" },
-      { property: "og:title", content: "Ícaro Imóveis — Investimentos Imobiliários" },
+      { property: "og:title", content: "Corretor de Imóveis - São José dos Campos" },
       {
         property: "og:description",
         content:
