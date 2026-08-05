@@ -237,13 +237,13 @@ function Hero() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <motion.div {...fadeUp} className="max-w-2xl">
-            <div className="text-[11px] uppercase tracking-[0.36em] text-muted-foreground">
+            <h1 className="text-[14px] uppercase tracking-[0.45em] text-muted-foreground font-semibold font-sans">
               Corretor de Imóveis - São José dos Campos
-            </div>
-            <h1 className="mt-8 text-[3.8rem] leading-[0.94] tracking-[-0.04em] text-foreground sm:text-[4.5rem] lg:text-[5.5rem]">
+            </h1>
+            <h2 className="mt-8 text-[3.8rem] leading-[0.94] tracking-[-0.04em] text-foreground sm:text-[4.5rem] lg:text-[5.5rem]">
               Invista em imóveis com <span className="italic text-gold">inteligência</span>
               <br />e <span className="italic text-gold">segurança</span>.
-            </h1>
+            </h2>
             <p className="mt-8 max-w-xl text-base leading-8 text-muted-foreground lg:text-lg">
               Especialista em imóveis Caixa, oportunidades abaixo do valor de mercado e
               investimentos imobiliários no Vale do Paraíba.
