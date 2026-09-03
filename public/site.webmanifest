@@ -1,0 +1,10 @@
+{
+  "name": "Ícaro Imóveis",
+  "short_name": "Ícaro",
+  "description": "Corretor de Imóveis em São José dos Campos.",
+  
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

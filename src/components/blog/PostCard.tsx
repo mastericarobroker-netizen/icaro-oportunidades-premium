@@ -16,9 +16,9 @@ export function PostCard({ post }: PostCardProps) {
         className="flex h-full flex-col"
       >
         <div className="relative aspect-[16/9] overflow-hidden rounded-t-[1.25rem] border-b border-border bg-foreground/[0.06]">
-          {post.cover ? (
+          {post.cardCover || post.cover ? (
             <img
-              src={post.cover}
+              src={post.cardCover ?? post.cover}
               alt={post.title}
               loading="lazy"
               className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"

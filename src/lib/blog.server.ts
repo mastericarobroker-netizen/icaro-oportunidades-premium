@@ -9,6 +9,7 @@ export type BlogPostMeta = {
   title: string;
   excerpt: string;
   cover: string;
+  cardCover?: string;
   author: string;
   publishedAt: string; // ISO date (yyyy-mm-dd)
   tags: string[];
@@ -46,6 +47,7 @@ const parsePost = (raw: string, slugFromPath: string): BlogPost => {
   const title = String(data.title ?? slug);
   const excerpt = String(data.excerpt ?? "");
   const cover = String(data.cover ?? "");
+  const cardCover = typeof data.cardCover === "string" ? data.cardCover : cover;
   const author = String(data.author ?? "Ícaro");
   const publishedAt = String(
     data.publishedAt ?? new Date().toISOString().slice(0, 10),
@@ -63,6 +65,7 @@ const parsePost = (raw: string, slugFromPath: string): BlogPost => {
     title,
     excerpt,
     cover,
+    cardCover,
     author,
     publishedAt,
     tags,
