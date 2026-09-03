@@ -77,24 +77,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Corretor de Imóveis - São José dos Campos" },
+      { title: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
       {
         name: "description",
         content:
-          "Especialista em imóveis Caixa, leilões e oportunidades abaixo do valor de mercado no Vale do Paraíba.",
+          "Corretor de imóveis em São José dos Campos e Vale do Paraíba: imóveis Caixa, leilões, análise de investimento e oportunidades abaixo do valor de mercado.",
       },
       { name: "author", content: "Ícaro Imóveis" },
-      { property: "og:title", content: "Corretor de Imóveis - São José dos Campos" },
+      { property: "og:title", content: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
       {
         property: "og:description",
         content:
-          "Curadoria de imóveis Caixa, leilões e oportunidades para geração de patrimônio no Vale do Paraíba.",
+          "Oportunidades em imóveis Caixa, leilões e investimentos imobiliários com análise consultiva em São José dos Campos e região.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Ícaro Imóveis" },
       { property: "og:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@icaroimoveis" },
+      { name: "twitter:title", content: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
+      { name: "twitter:description", content: "Corretor de imóveis em São José dos Campos e Vale do Paraíba: imóveis Caixa, leilões, análise de investimento e oportunidades abaixo do valor de mercado." },
       { name: "twitter:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
+      { name: "theme-color", media: "(prefers-color-scheme: light)", content: "#ffffff" },
+      { name: "theme-color", media: "(prefers-color-scheme: dark)", content: "#000000" },
     ],
     links: [
       {
@@ -102,6 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "canonical", href: "https://icaroimoveis.com.br/" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

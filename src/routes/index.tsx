@@ -33,23 +33,26 @@ import regionMap from "@/assets/mapa-vale-do-paraiba.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Corretor de Imóveis - São José dos Campos" },
+      { title: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
       {
         name: "description",
         content:
-          "Especialista em imóveis Caixa, leilões e oportunidades abaixo do valor de mercado em São José dos Campos e Vale do Paraíba.",
+          "Corretor de imóveis em São José dos Campos e Vale do Paraíba: imóveis Caixa, leilões, análise de investimento e oportunidades abaixo do valor de mercado.",
       },
       { name: "robots", content: "index,follow" },
       { property: "og:url", content: "https://icaroimoveis.com.br/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@icaroimoveis" },
-      { property: "og:title", content: "Corretor de Imóveis - São José dos Campos" },
+      { property: "og:title", content: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
       {
         property: "og:description",
         content:
-          "Curadoria de imóveis Caixa, leilões e oportunidades para geração de patrimônio no Vale do Paraíba.",
+          "Oportunidades em imóveis Caixa, leilões e investimentos imobiliários com análise consultiva em São José dos Campos e região.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
+      { name: "twitter:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
+      { name: "theme-color", content: "#111111" },
     ],
     links: [
       { rel: "canonical", href: "https://icaroimoveis.com.br/" },
@@ -93,7 +96,7 @@ const nav = [
   { label: "Sobre", href: "#sobre" },
   { label: "Imóveis", href: "https://imoveis.icaroimoveis.com.br" },
   { label: "Simulação", href: "https://calc.icaroimoveis.com.br" },
-  { label: "Benefícios", href: "#beneficios" },
+  { label: "Vídeos", href: "#beneficios" },
   { label: "Blog", href: "/blog" },
   { label: "Contato", href: "#contato" },
 ];
@@ -240,7 +243,7 @@ function Hero() {
             <h1 className="text-[14px] uppercase tracking-[0.45em] text-muted-foreground font-semibold font-sans">
               Corretor de Imóveis - São José dos Campos
             </h1>
-            <h2 className="mt-8 text-[3.8rem] leading-[0.94] tracking-[-0.04em] text-foreground sm:text-[4.5rem] lg:text-[5.5rem]">
+            <h2 className="mt-8 text-[clamp(2.6rem,7vw,5.5rem)] leading-[0.94] tracking-[-0.04em] text-foreground">
               Invista em imóveis com <span className="italic text-gold">inteligência</span>
               <br />e <span className="italic text-gold">segurança</span>.
             </h2>
@@ -371,40 +374,81 @@ function Benefits() {
 }
 
 function BenefitsImpl() {
-  const items = [
-    { title: "Curadoria Especializada", text: "Seleção das melhores oportunidades." },
-    { title: "Análise de Potencial", text: "Avaliação de valorização e retorno." },
-    { title: "Segurança Jurídica", text: "Acompanhamento completo do processo." },
-    { title: "Atendimento Consultivo", text: "Suporte do início ao fim." },
+  const videos = [
+    {
+      title: "TERRENO EM LEILÃO NO URBANOVA VII: OPORTUNIDADE OU RISCO? | SÃO JOSÉ DOS CAMPOS",
+      description: "Análise prática sobre risco, oportunidade e decisão na compra de terrenos em leilão.",
+      href: "https://www.youtube.com/watch?v=Xlmifm7DDKA&t=27s&pp=0gcJCRsMAYcqIYzv",
+      thumbnail: "https://i.ytimg.com/vi/Xlmifm7DDKA/hqdefault.jpg",
+    },
+    {
+      title: "IMÓVEL CAIXA de R$ 280 MIL por R$ 117 MIL! Valeu a Pena? | SÃO JOSÉ DOS CAMPOS",
+      description: "Análise prática sobre se vale a pena comprar um imóvel Caixa com desconto tão expressivo.",
+      href: "https://www.youtube.com/watch?v=JhHOpUfQ2vI",
+      thumbnail: "https://i.ytimg.com/vi/JhHOpUfQ2vI/hqdefault.jpg",
+    },
+    {
+      title: "Apartamento de R$ 350 MIL por R$ 180 MIL em São José dos Campos... Vale a Pena?",
+      description: "Avaliação prática sobre a viabilidade de comprar um apartamento em desconto no mercado local.",
+      href: "https://www.youtube.com/watch?v=-ESoci64-RU&t=5s",
+      thumbnail: "https://i.ytimg.com/vi/-ESoci64-RU/hqdefault.jpg",
+    },
+    {
+      title: "Vale do Paraíba: onde está o melhor potencial hoje",
+      description: "Uma leitura prática sobre mercado, valorização e oportunidades de investimento na região.",
+      href: "https://www.youtube.com/@icarocorretordeimoveis_sjc",
+      thumbnail:
+        "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80",
+    },
   ];
+
   return (
     <section id="beneficios" className="border-t border-border bg-background py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <motion.div {...fadeUp} className="max-w-2xl">
-          <div className="text-[11px] uppercase tracking-[0.32em] text-gold">Benefícios</div>
+          <div className="text-[11px] uppercase tracking-[0.32em] text-gold">Vídeos</div>
           <h2 className="mt-6 text-4xl leading-tight lg:text-5xl">
-            Por que investir com a Ícaro Imóveis?
+            Conteúdos em vídeo para você decidir melhor.
           </h2>
         </motion.div>
-        <div className="mt-16 overflow-hidden rounded-[1.75rem] border border-border bg-white shadow-[0_30px_80px_-44px_rgba(16,16,16,0.12)]">
-          {items.map((item, idx) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
+
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {videos.map((video, idx) => (
+            <motion.a
+              key={video.title}
+              href={video.href}
+              target="_blank"
+              rel="noreferrer"
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.08 }}
-              className={`grid gap-4 px-8 py-7 ${idx < items.length - 1 ? "border-b border-border" : ""}`}
+              className="group block overflow-hidden rounded-[1.5rem] border border-border bg-white shadow-[0_30px_80px_-44px_rgba(16,16,16,0.12)] transition-all duration-500 hover:-translate-y-1 hover:border-gold/40"
             >
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
-                  <span className="font-display text-2xl text-gold">0{idx + 1}</span>
-                  <h3 className="text-xl text-foreground">{item.title}</h3>
-                </div>
-                <span className="text-sm uppercase tracking-[0.18em] text-muted-foreground">0{idx + 1}</span>
+              <div className="relative aspect-[16/9] overflow-hidden border-b border-border bg-foreground/5">
+                <img
+                  src={video.thumbnail}
+                  alt={video.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               </div>
-              <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-            </motion.div>
+
+              <div className="space-y-4 p-6">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-gold">YouTube</div>
+                <h3 className="font-display text-2xl leading-tight tracking-tight text-foreground">
+                  {video.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {video.description}
+                </p>
+                <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-foreground">
+                  Assistir
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </div>
+              </div>
+            </motion.a>
           ))}
         </div>
       </div>
@@ -664,13 +708,10 @@ function Opportunities() {
 
 function Region() {
   const cities = [
-    "Estado de São Paulo",
     "São José dos Campos",
     "Jacareí",
-    "Taubaté",
     "Caçapava",
-    "Pindamonhangaba",
-    "Vale do Paraíba",
+    "Estado de São Paulo",
   ];
   return (
     <section className="border-t border-border py-28 lg:py-36">
@@ -682,17 +723,16 @@ function Region() {
             <span className="italic">Estado de São Paulo</span>.
           </h2>
           <p className="mt-5 text-base text-muted-foreground">
-            Conectando investidores às melhores oportunidades imobiliárias do
-            estado, com presença estratégica em São José dos Campos e Vale do
-            Paraíba.
+            Conectando investidores às melhores oportunidades imobiliárias em
+            São José dos Campos, Jacareí, Caçapava e em todo o Estado de São
+            Paulo.
           </p>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
             Atuamos na prospecção e análise de oportunidades imobiliárias em
             todo o Estado de São Paulo, com especialização em imóveis Caixa,
             imóveis abaixo do valor de mercado, leilões e investimentos
             patrimoniais. Nossa atuação possui forte presença em São José dos
-            Campos e em toda a região do Vale do Paraíba — um dos polos
-            econômicos mais relevantes do país.
+            Campos, Jacareí e Caçapava, além do restante do mercado paulista.
           </p>
           <div className="mt-8 flex flex-wrap gap-2">
             {cities.map((c) => (
