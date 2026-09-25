@@ -394,11 +394,10 @@ function BenefitsImpl() {
       thumbnail: "https://i.ytimg.com/vi/-ESoci64-RU/hqdefault.jpg",
     },
     {
-      title: "Vale do Paraíba: onde está o melhor potencial hoje",
-      description: "Uma leitura prática sobre mercado, valorização e oportunidades de investimento na região.",
-      href: "https://www.youtube.com/@icarocorretordeimoveis_sjc",
-      thumbnail:
-        "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80",
+      title: "LBO Imobiliário: A Estratégia de Wall Street Aplicada aos Imóveis",
+      description: "Análise prática sobre como aplicar a lógica do LBO imobiliário e avaliar oportunidades com visão financeira e estratégica.",
+      href: "https://www.youtube.com/watch?v=oMnYLe1b_FI&t=2s",
+      thumbnail: "https://i.ytimg.com/vi/oMnYLe1b_FI/hqdefault.jpg",
     },
   ];
 
