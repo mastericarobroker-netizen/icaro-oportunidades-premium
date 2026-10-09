@@ -66,10 +66,10 @@ const WHATSAPP_MSG = encodeURIComponent(
   "Olá Ícaro, gostaria de conhecer as oportunidades de investimento imobiliário.",
 );
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
-const SUPABASE_BASE_URL = import.meta.env.VITE_SUPABASE_URL || "";
+const SUPABASE_BASE_URL = "https://yvzhiejargcejzjgrqwx.supabase.co";
 const SUPABASE_API_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || "";
 const SUPABASE_PROPERTIES_URL =
-  `${SUPABASE_BASE_URL}/rest/v1/properties?select=*&order=created_at.desc&limit=4`;
+  `${SUPABASE_BASE_URL}/rest/v1/homepage_property_cards_public?select=position,property_id,title,price,city,state,images,listing_type,auction_modality,type,bedrooms,bathrooms,area&order=position.asc&limit=4`;
 const SUPABASE_HEADERS = {
   apikey: SUPABASE_API_KEY,
   Authorization: `Bearer ${SUPABASE_API_KEY}`,
@@ -78,17 +78,19 @@ const IMOVEIS_PORTAL_URL = "https://imoveis.icaroimoveis.com.br";
 const CALC_BASE_URL = "https://calc.icaroimoveis.com.br";
 
 type PropertyItem = {
-  id: string;
-  title?: string;
-  name?: string;
-  price?: number;
+  position: number;
+  property_id: string;
+  title: string;
+  price?: number | string | null;
   city?: string;
+  state?: string;
+  images?: Array<string | { url?: string; image_url?: string; src?: string }> | null;
+  listing_type?: string | null;
+  auction_modality?: string | null;
   type?: string;
-  image_url?: string;
-  cover_image?: string;
-  main_image?: string;
-  photo?: string;
-  address?: { city?: string };
+  bedrooms?: number | null;
+  bathrooms?: number | null;
+  area?: number | null;
 };
 
 const nav = [
@@ -619,37 +621,67 @@ function OpportunityTeaser() {
       {!isError && status === "loaded" && (
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {properties.map((property) => {
-            const image = property.image_url || property.cover_image || property.main_image || property.photo;
-            const title = property.title || property.name || property.type || "Imóvel";
-            const location = property.city || property.address?.city || "São José dos Campos";
-            const price = property.price
-              ? `R$ ${property.price.toLocaleString("pt-BR")}`
-              : "Sob consulta";
+            const firstImage = property.images?.[0];
+            const image =
+              typeof firstImage === "string"
+                ? firstImage
+                : firstImage?.url || firstImage?.image_url || firstImage?.src;
+            const title = property.title || property.type || "Imóvel";
+            const location = [property.city, property.state].filter(Boolean).join(", ") || "Brasil";
+            const numericPrice = Number(property.price);
+            const price =
+              property.price !== null &&
+              property.price !== undefined &&
+              Number.isFinite(numericPrice)
+                ? new Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                    maximumFractionDigits: 0,
+                  }).format(numericPrice)
+                : "Sob consulta";
+            const label = property.auction_modality || property.listing_type || "À venda";
+            const details = [
+              property.bedrooms ? `${property.bedrooms} quartos` : null,
+              property.bathrooms ? `${property.bathrooms} banheiros` : null,
+              property.area ? `${property.area} m²` : null,
+            ].filter(Boolean);
             return (
               <a
-                key={property.id}
-                href={`${IMOVEIS_PORTAL_URL}/imovel/${property.id}`}
+                key={property.property_id}
+                href={`${IMOVEIS_PORTAL_URL}/imovel/${property.property_id}`}
                 target="_blank"
                 rel="noreferrer"
-                className="group overflow-hidden rounded-[1.25rem] border border-border bg-secondary/10 transition hover:-translate-y-1 hover:border-gold/40"
+                className="group block overflow-hidden rounded-[1.5rem] border border-border bg-white shadow-[0_30px_80px_-44px_rgba(16,16,16,0.12)] transition-all duration-500 hover:-translate-y-1 hover:border-gold/40"
               >
-                <div className="h-44 w-full overflow-hidden bg-graphite/10">
+                <div className="relative aspect-[16/9] overflow-hidden border-b border-border bg-foreground/5">
                   {image ? (
                     <img
                       src={image}
                       alt={title}
-                      className="h-full w-full object-cover"
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center bg-foreground/10 text-center text-sm text-muted-foreground">
                       Imagem do imóvel
                     </div>
                   )}
+                  <span className="absolute left-3 top-3 bg-white px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.16em] text-foreground shadow-sm">
+                    {label}
+                  </span>
                 </div>
-                <div className="space-y-3 p-5 bg-white">
-                  <div className="text-sm uppercase tracking-[0.18em] text-gold/80">{title}</div>
+                <div className="space-y-2.5 p-4">
+                  <div className="line-clamp-2 min-h-10 font-display text-xl leading-tight text-foreground">{title}</div>
                   <div className="text-base font-semibold text-foreground">{price}</div>
-                  <div className="text-sm text-muted-foreground">{location}</div>
+                  <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                    <MapPin className="h-3.5 w-3.5 shrink-0 text-gold" />
+                    <span>{location}</span>
+                  </div>
+                  {details.length > 0 && (
+                    <div className="flex flex-wrap gap-x-3 gap-y-1 border-t border-border pt-2.5 text-[10px] text-muted-foreground">
+                      {details.map((detail) => <span key={detail}>{detail}</span>)}
+                    </div>
+                  )}
                 </div>
               </a>
             );
