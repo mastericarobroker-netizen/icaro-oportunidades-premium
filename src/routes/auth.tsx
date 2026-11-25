@@ -2,7 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
-    meta: [{ title: "Acesso · Ícaro Imóveis" }],
+    meta: [
+      { title: "Acesso · Ícaro Imóveis" },
+      {
+        name: "description",
+        content: "Área de acesso interno do site Ícaro Imóveis.",
+      },
+      { name: "robots", content: "noindex,nofollow" },
+    ],
   }),
   component: AuthPage,
 });

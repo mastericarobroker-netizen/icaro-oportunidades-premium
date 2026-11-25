@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { BlogImage } from "@/components/blog/BlogImage";
 import type { BlogPostMeta } from "@/lib/blog";
 import { formatPostDate } from "@/lib/blog";
 
@@ -17,9 +18,11 @@ export function PostCard({ post }: PostCardProps) {
       >
         <div className="relative aspect-[16/9] overflow-hidden rounded-t-[1.25rem] border-b border-border bg-foreground/[0.06]">
           {post.cardCover || post.cover ? (
-            <img
+            <BlogImage
               src={post.cardCover ?? post.cover}
               alt={post.title}
+              width={post.cardCoverWidth ?? post.coverWidth ?? 1600}
+              height={post.cardCoverHeight ?? post.coverHeight ?? 900}
               loading="lazy"
               className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
             />
@@ -41,9 +44,9 @@ export function PostCard({ post }: PostCardProps) {
               {post.readingTime} min
             </span>
           </div>
-          <h3 className="font-display text-2xl leading-tight tracking-tight text-foreground">
+          <h2 className="font-display text-2xl leading-tight tracking-tight text-foreground">
             {post.title}
-          </h3>
+          </h2>
           <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
             {post.excerpt}
           </p>

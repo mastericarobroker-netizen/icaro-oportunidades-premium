@@ -1,55 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://icaroimoveis.com.br/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://icaroimoveis.com.br/blog/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/blog/</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://icaroimoveis.com.br/blog/a-revolucao-da-tokenizacao-imobiliaria</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/blog/a-revolucao-da-tokenizacao-imobiliaria</loc>
+    <lastmod>2026-06-26</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://icaroimoveis.com.br/blog/ciclos-do-mercado-imobiliario-em-que-momento-esta-sao-jose-dos-campos</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/blog/ciclos-do-mercado-imobiliario-em-que-momento-esta-sao-jose-dos-campos</loc>
+    <lastmod>2026-07-29</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://icaroimoveis.com.br/blog/como-avaliamos-imoveis-caixa</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/blog/como-avaliamos-imoveis-caixa</loc>
+    <lastmod>2026-06-10</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://icaroimoveis.com.br/blog/documentacao-imobiliaria</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/blog/documentacao-imobiliaria</loc>
+    <lastmod>2026-07-01</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://icaroimoveis.com.br/blog/leiloes-judiciais-primeiro-investimento</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/blog/house-flipping-o-lucro-nao-esta-na-reforma-esta-na-compra</loc>
+    <lastmod>2026-09-03</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://icaroimoveis.com.br/blog/o-que-a-morgan-stanley-nos-ensina-sobre-o-futuro-da-tokenizacao-imobiliaria</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/blog/leiloes-judiciais-primeiro-investimento</loc>
+    <lastmod>2026-04-15</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://icaroimoveis.com.br/blog/reforma-tributaria-mercado-imobiliario</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/blog/lbo-imobiliario-estrategia-wall-street-imoveis</loc>
+    <lastmod>2026-09-25</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://icaroimoveis.com.br/blog/vale-do-paraiba-mercado-2026</loc>
-    <lastmod>2026-07-30</lastmod>
+    <loc>https://www.icaroimoveis.com.br/blog/o-que-a-morgan-stanley-nos-ensina-sobre-o-futuro-da-tokenizacao-imobiliaria</loc>
+    <lastmod>2026-07-29</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.icaroimoveis.com.br/blog/reforma-tributaria-mercado-imobiliario</loc>
+    <lastmod>2026-07-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.icaroimoveis.com.br/blog/vale-do-paraiba-mercado-2026</loc>
+    <lastmod>2026-05-22</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>

@@ -29,33 +29,32 @@ import {
 import corpoImage from "@/assets/icaro-corpo-inteiro2.jpg";
 import heroImage from "@/assets/icaro-foto-perfil.jpg";
 import regionMap from "@/assets/mapa-vale-do-paraiba.png";
+import regionMapWebp from "@/assets/mapa-vale-do-paraiba.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
+      { title: "Corretor de Imóveis em São José dos Campos | Leilão e Caixa" },
       {
         name: "description",
-        content:
-          "Corretor de imóveis em São José dos Campos e Vale do Paraíba: imóveis Caixa, leilões, análise de investimento e oportunidades abaixo do valor de mercado.",
+        content: "Corretor em São José dos Campos: imóveis Caixa, leilões e oportunidades abaixo do mercado, com análise de risco. Fale no WhatsApp.",
       },
       { name: "robots", content: "index,follow" },
-      { property: "og:url", content: "https://icaroimoveis.com.br/" },
+      { property: "og:url", content: "https://www.icaroimoveis.com.br/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@icaroimoveis" },
-      { property: "og:title", content: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
-      {
-        property: "og:description",
-        content:
-          "Oportunidades em imóveis Caixa, leilões e investimentos imobiliários com análise consultiva em São José dos Campos e região.",
-      },
+      { property: "og:title", content: "Corretor de Imóveis em São José dos Campos | Leilão e Caixa" },
+      { property: "og:description", content: "Corretor em São José dos Campos: imóveis Caixa, leilões e oportunidades abaixo do mercado, com análise de risco. Fale no WhatsApp." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
-      { name: "twitter:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
+      { property: "og:site_name", content: "Ícaro Imóveis" },
+      { property: "og:image", content: `https://www.icaroimoveis.com.br${heroImage}` },
+      { name: "twitter:title", content: "Corretor de Imóveis em São José dos Campos | Leilão e Caixa" },
+      { name: "twitter:description", content: "Corretor em São José dos Campos: imóveis Caixa, leilões e oportunidades abaixo do mercado, com análise de risco. Fale no WhatsApp." },
+      { name: "twitter:image", content: `https://www.icaroimoveis.com.br${heroImage}` },
       { name: "theme-color", content: "#111111" },
     ],
     links: [
-      { rel: "canonical", href: "https://icaroimoveis.com.br/" },
+      { rel: "canonical", href: "https://www.icaroimoveis.com.br/" },
     ],
   }),
   component: Index,
@@ -294,9 +293,9 @@ function Hero() {
             <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-[0_40px_120px_-80px_rgba(16,16,16,0.16)]">
               <img
                 src={heroImage}
-                alt="Ícaro — Especialista em Investimentos Imobiliários"
-                width={1600}
-                height={1200}
+                alt="Ícaro, corretor de imóveis em São José dos Campos e especialista em investimentos imobiliários"
+                width={768}
+                height={1024}
                 className="h-full w-full object-cover object-top"
               />
             </div>
@@ -333,7 +332,9 @@ function Authority() {
         >
           <img
             src={corpoImage}
-            alt="Ícaro — Especialista em Investimentos Imobiliários"
+            alt="Ícaro, corretor de imóveis em São José dos Campos e especialista em investimentos imobiliários"
+            width={768}
+            height={1024}
             loading="lazy"
             className="h-full w-full object-cover"
           />
@@ -430,6 +431,8 @@ function BenefitsImpl() {
                 <img
                   src={video.thumbnail}
                   alt={video.title}
+                  width={480}
+                  height={360}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
@@ -657,7 +660,9 @@ function OpportunityTeaser() {
                   {image ? (
                     <img
                       src={image}
-                      alt={title}
+                      alt={`${title} — imóvel em ${location}`}
+                      width={640}
+                      height={360}
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
@@ -793,12 +798,18 @@ function StateMap() {
   // Use a provided raster image for the State map. Place the image at src/assets/mapa-vale-do-paraiba.png
   return (
     <div className="relative aspect-square w-full max-w-lg">
-      <img
-        src={regionMap}
-        alt="Região de atuação — Vale do Paraíba"
-        className="h-full w-full object-contain"
-        loading="lazy"
-      />
+      <picture>
+        <source srcSet={regionMapWebp} type="image/webp" />
+        <img
+          src={regionMap}
+          alt="Mapa da atuação de Ícaro Imóveis em São José dos Campos, Jacareí, Caçapava e no Vale do Paraíba"
+          width={1536}
+          height={1024}
+          className="h-full w-full object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
     </div>
   );
 }
@@ -990,9 +1001,9 @@ function Footer() {
           </p>
         </div>
         <div>
-          <h4 className="text-[11px] uppercase tracking-[0.28em] text-gold-soft">
+          <h2 className="text-[11px] uppercase tracking-[0.28em] text-gold-soft">
             Navegação
-          </h4>
+          </h2>
           <ul className="mt-4 space-y-2 text-sm text-background/75">
             {nav.map((n) => (
               <li key={n.href}>
@@ -1004,9 +1015,9 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-[11px] uppercase tracking-[0.28em] text-gold-soft">
+          <h2 className="text-[11px] uppercase tracking-[0.28em] text-gold-soft">
             Contato
-          </h4>
+          </h2>
           <ul className="mt-4 space-y-3 text-sm text-background/75">
             <li>
               <a
@@ -1028,9 +1039,10 @@ function Footer() {
                 <Instagram className="h-4 w-4" /> Instagram
               </a>
             </li>
+            {/* URL pessoal do LinkedIn fornecida pelo proprietário; manter este destino explícito. */}
             <li>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/%C3%ADcaro-carlos-ribeiro-silva-712056366/"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 hover:text-gold-soft"

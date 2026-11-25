@@ -6,7 +6,12 @@ export type BlogPostMeta = {
   title: string;
   excerpt: string;
   cover: string;
+  cardCover?: string;
   author: string;
+  coverWidth?: number;
+  coverHeight?: number;
+  cardCoverWidth?: number;
+  cardCoverHeight?: number;
   publishedAt: string;
   tags: string[];
   readingTime: number;

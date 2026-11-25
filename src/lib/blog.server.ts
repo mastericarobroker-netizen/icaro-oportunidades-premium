@@ -10,6 +10,10 @@ export type BlogPostMeta = {
   excerpt: string;
   cover: string;
   cardCover?: string;
+  coverWidth: number;
+  coverHeight: number;
+  cardCoverWidth: number;
+  cardCoverHeight: number;
   author: string;
   publishedAt: string; // ISO date (yyyy-mm-dd)
   tags: string[];
@@ -26,6 +30,23 @@ const POSTS_GLOB = import.meta.glob<string>("/src/content/blog/*.md", {
   import: "default",
   eager: true,
 });
+
+const COVER_DIMENSIONS: Record<string, [number, number]> = {
+  "/blog/Capa_tokenizacao.png": [2240, 1260],
+  "/blog/HF_capa-card.jpg": [1200, 675],
+  "/blog/HF_capa-page.jpg": [1600, 900],
+  "/blog/capa-ciclos-de-mercado.png": [2240, 1260],
+  "/blog/capa-como-avaliamos-imoveis-caixa.jpg": [1600, 900],
+  "/blog/capa-documentacao-imobiliaria.jpg": [1600, 900],
+  "/blog/capa-leiloes-judiciais.png": [1600, 900],
+  "/blog/capa-reforma-tributaria.jpg": [1600, 900],
+  "/blog/capa-tokenizacao.jpg": [922, 1152],
+  "/blog/capa-vale-do-paraiba.png": [1600, 900],
+  "/blog/capa_lbo.jpg": [900, 1600],
+};
+
+const dimensionsFor = (src: string): [number, number] =>
+  COVER_DIMENSIONS[src] ?? [1600, 900];
 
 const formatDate = (iso: string): string => {
   try {
@@ -48,6 +69,8 @@ const parsePost = (raw: string, slugFromPath: string): BlogPost => {
   const excerpt = String(data.excerpt ?? "");
   const cover = String(data.cover ?? "");
   const cardCover = typeof data.cardCover === "string" ? data.cardCover : cover;
+  const [coverWidth, coverHeight] = dimensionsFor(cover);
+  const [cardCoverWidth, cardCoverHeight] = dimensionsFor(cardCover);
   const author = String(data.author ?? "Ícaro");
   const publishedAt = String(
     data.publishedAt ?? new Date().toISOString().slice(0, 10),
@@ -58,7 +81,8 @@ const parsePost = (raw: string, slugFromPath: string): BlogPost => {
       Math.max(1, Math.round(content.split(/\s+/).length / 200)),
   );
 
-  const contentHtml = marked.parse(content, { async: false }) as string;
+  const contentForPage = content.replace(/^#(?!#)\s+/gm, "## ");
+  const contentHtml = marked.parse(contentForPage, { async: false }) as string;
 
   return {
     slug,
@@ -66,6 +90,10 @@ const parsePost = (raw: string, slugFromPath: string): BlogPost => {
     excerpt,
     cover,
     cardCover,
+    coverWidth,
+    coverHeight,
+    cardCoverWidth,
+    cardCoverHeight,
     author,
     publishedAt,
     tags,

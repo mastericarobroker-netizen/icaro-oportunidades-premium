@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import heroImage from "@/assets/icaro-foto-perfil.jpg";
 
 function NotFoundComponent() {
   return (
@@ -77,27 +78,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
-      {
-        name: "description",
-        content:
-          "Corretor de imóveis em São José dos Campos e Vale do Paraíba: imóveis Caixa, leilões, análise de investimento e oportunidades abaixo do valor de mercado.",
-      },
+      { title: "Página não encontrada | Ícaro Imóveis" },
+      { name: "robots", content: "noindex,nofollow" },
       { name: "author", content: "Ícaro Imóveis" },
-      { property: "og:title", content: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
-      {
-        property: "og:description",
-        content:
-          "Oportunidades em imóveis Caixa, leilões e investimentos imobiliários com análise consultiva em São José dos Campos e região.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Ícaro Imóveis" },
-      { property: "og:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@icaroimoveis" },
-      { name: "twitter:title", content: "Corretor de Imóveis - São José dos Campos | Imóveis Caixa e Leilões" },
-      { name: "twitter:description", content: "Corretor de imóveis em São José dos Campos e Vale do Paraíba: imóveis Caixa, leilões, análise de investimento e oportunidades abaixo do valor de mercado." },
-      { name: "twitter:image", content: "https://icaroimoveis.com.br/assets/icaro-hero.jpeg" },
       { name: "theme-color", media: "(prefers-color-scheme: light)", content: "#ffffff" },
       { name: "theme-color", media: "(prefers-color-scheme: dark)", content: "#000000" },
     ],
@@ -106,7 +89,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "canonical", href: "https://icaroimoveis.com.br/" },
       { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -129,16 +111,16 @@ function RootShell({ children }: { children: ReactNode }) {
       {
         "@type": "Organization",
         "name": "Ícaro Imóveis",
-        "url": "https://icaroimoveis.com.br",
-        "logo": "https://icaroimoveis.com.br/assets/icaro-hero.jpeg",
+        "url": "https://www.icaroimoveis.com.br/",
+        "logo": `https://www.icaroimoveis.com.br${heroImage}`,
         "sameAs": [
           "https://www.instagram.com/icarocorretordeimoveis/",
-          "https://www.linkedin.com/"
+          "https://www.linkedin.com/in/%C3%ADcaro-carlos-ribeiro-silva-712056366/"
         ]
       },
       {
         "@type": "WebSite",
-        "url": "https://icaroimoveis.com.br",
+        "url": "https://www.icaroimoveis.com.br/",
         "name": "Ícaro Imóveis",
         "publisher": {
           "@type": "Organization",

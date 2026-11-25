@@ -1,8 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { PostHeader } from "@/components/blog/PostHeader";
+import { BlogImage } from "@/components/blog/BlogImage";
 import { fetchPostBySlug, fetchListPosts } from "@/lib/blog.server";
 import type { BlogPostMeta } from "@/lib/blog";
+import heroImage from "@/assets/icaro-foto-perfil.jpg";
 
 type LoaderData = {
   post: NonNullable<Awaited<ReturnType<typeof fetchPostBySlug>>>;
@@ -19,22 +21,19 @@ export const Route = createFileRoute("/blog/$slug")({
       .slice(0, 3);
     return { post, related };
   },
-  head: ({ loader }) => {
-    const post = (loader as LoaderData | undefined)?.post;
+  head: ({ loaderData }) => {
+    const post = (loaderData as LoaderData | undefined)?.post;
     if (!post)
       return {
         meta: [{ title: "Artigo · Ícaro Imóveis" }],
       };
 
-    let imageUrl = "https://icaroimoveis.com.br/assets/icaro-hero.jpeg";
+    let imageUrl = `https://www.icaroimoveis.com.br${heroImage}`;
     if (post.cover) {
       if (post.cover.startsWith("http")) {
         imageUrl = post.cover;
       } else {
-        // Prefer generated OG image: /blog/og-<basename>-1200x630.jpg
-        const basename = post.cover.split("/").pop() ?? "cover";
-        const nameNoExt = basename.replace(/\.[^.]+$/, "");
-        imageUrl = `https://icaroimoveis.com.br/blog/og-${nameNoExt}-1200x630.jpg`;
+        imageUrl = `https://www.icaroimoveis.com.br${post.cover}`;
       }
     }
 
@@ -43,15 +42,18 @@ export const Route = createFileRoute("/blog/$slug")({
         { title: `${post.title} · Ícaro Imóveis` },
         { name: "description", content: post.excerpt ?? "" },
         { name: "robots", content: "index,follow" },
-        { property: "og:title", content: post.title },
+        { property: "og:title", content: `${post.title} · Ícaro Imóveis` },
         { property: "og:description", content: post.excerpt ?? "" },
         { property: "og:type", content: "article" },
-        { property: "og:url", content: `https://icaroimoveis.com.br/blog/${post.slug}` },
+        { property: "og:site_name", content: "Ícaro Imóveis" },
+        { property: "og:url", content: `https://www.icaroimoveis.com.br/blog/${post.slug}` },
         { property: "og:image", content: imageUrl },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: `${post.title} · Ícaro Imóveis` },
+        { name: "twitter:description", content: post.excerpt ?? "" },
         { name: "twitter:image", content: imageUrl },
       ],
-      links: [{ rel: "canonical", href: `https://icaroimoveis.com.br/blog/${post.slug}` }],
+      links: [{ rel: "canonical", href: `https://www.icaroimoveis.com.br/blog/${post.slug}` }],
     };
   },
   notFoundComponent: () => <PostNotFound />,
@@ -77,12 +79,12 @@ function BlogPostPage() {
       {post.cover ? (
         <div className="mx-auto max-w-4xl px-6 pt-2 lg:px-0">
           <div className="overflow-hidden rounded-[1.5rem] border border-border bg-foreground/[0.04]">
-            <img
+            <BlogImage
               src={post.cover}
               alt={post.title}
-              width={1600}
-              height={900}
-              loading="lazy"
+              width={post.coverWidth}
+              height={post.coverHeight}
+              loading="eager"
               className="block h-auto w-full object-cover"
               style={{ maxHeight: "420px" }}
             />
@@ -98,10 +100,10 @@ function BlogPostPage() {
       {related.length > 0 ? (
         <section className="border-t border-border bg-foreground/[0.02] py-20">
           <div className="mx-auto max-w-7xl px-6 lg:px-10">
-            <div className="mb-10 flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-graphite">
+            <h2 className="mb-10 flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-graphite">
               <span className="h-px w-8 bg-gold" />
               Continue lendo
-            </div>
+            </h2>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((p) => (
                 <Link
