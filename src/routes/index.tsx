@@ -28,6 +28,8 @@ import {
 } from "lucide-react";
 import corpoImage from "@/assets/icaro-corpo-inteiro2.jpg";
 import heroImage from "@/assets/icaro-foto-perfil.jpg";
+import heroImageWebp384 from "@/assets/icaro-foto-perfil-384.webp";
+import heroImageWebp768 from "@/assets/icaro-foto-perfil-768.webp";
 import regionMap from "@/assets/mapa-vale-do-paraiba.png";
 import regionMapWebp from "@/assets/mapa-vale-do-paraiba.webp";
 
@@ -55,6 +57,15 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://www.icaroimoveis.com.br/" },
+      {
+        rel: "preload",
+        as: "image",
+        href: heroImageWebp768,
+        type: "image/webp",
+        imageSrcSet: `${heroImageWebp384} 384w, ${heroImageWebp768} 768w`,
+        imageSizes: "(min-width: 1024px) 40vw, 100vw",
+        fetchPriority: "high",
+      },
     ],
   }),
   component: Index,
@@ -97,6 +108,7 @@ const nav = [
   { label: "Sobre", href: "#sobre" },
   { label: "Imóveis", href: "https://imoveis.icaroimoveis.com.br" },
   { label: "Simulação", href: "https://calc.icaroimoveis.com.br" },
+  { label: "Leilão", href: "/assessoria-leilao-imoveis-sao-jose-dos-campos" },
   { label: "Vídeos", href: "#beneficios" },
   { label: "Blog", href: "/blog" },
   { label: "Contato", href: "#contato" },
@@ -291,13 +303,24 @@ function Hero() {
             className="relative"
           >
             <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-[0_40px_120px_-80px_rgba(16,16,16,0.16)]">
-              <img
-                src={heroImage}
-                alt="Ícaro, corretor de imóveis em São José dos Campos e especialista em investimentos imobiliários"
-                width={768}
-                height={1024}
-                className="h-full w-full object-cover object-top"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={`${heroImageWebp384} 384w, ${heroImageWebp768} 768w`}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                />
+                <img
+                  src={heroImage}
+                  srcSet={`${heroImage} 768w`}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  alt="Ícaro, corretor de imóveis em São José dos Campos e especialista em investimentos imobiliários"
+                  width={768}
+                  height={1024}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full w-full object-cover object-top"
+                />
+              </picture>
             </div>
             <div className="absolute -top-6 right-4 hidden w-56 rounded border border-border bg-background/95 px-4 py-3 text-xs shadow-xl sm:block">
               <div className="text-[9px] uppercase tracking-[0.32em] text-muted-foreground">
@@ -734,6 +757,14 @@ function Opportunities() {
               </div>
               <h3 className="mt-10 text-xl">{it.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-background/75">{it.text}</p>
+              {it.title === "Leilões Imobiliários" && (
+                <a
+                  href="/assessoria-leilao-imoveis-sao-jose-dos-campos"
+                  className="mt-5 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-gold-soft underline underline-offset-4 hover:text-background"
+                >
+                  Conheça a assessoria <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              )}
             </motion.div>
           ))}
         </div>

@@ -52,4 +52,4 @@ Leilão **vale a pena** para quem:
 
 ---
 
-Quer ajuda para analisar uma oportunidade específica de leilão? [Fale com a gente](#).
+Quer ajuda para analisar uma oportunidade específica? Conheça a [assessoria em leilão extrajudicial de imóveis em São José dos Campos](/assessoria-leilao-imoveis-sao-jose-dos-campos) ou [fale com a gente](https://wa.me/5512991968709).
